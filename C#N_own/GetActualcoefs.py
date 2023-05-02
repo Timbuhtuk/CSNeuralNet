@@ -13,7 +13,7 @@ while(True):
     FileA.readline()
     if(Last_id!=int(FileA.readline())):
         print(Last_id)
-        FileA.close
+        FileA.close()
         Data = []
         for item in JsonText['data']['game']['history']:
             Data.append(item['crash'])
@@ -28,7 +28,7 @@ while(True):
                 FileA.write('/')
         FileA.write('\n') 
         FileA.write(str(Last_id))       
-        FileA.close
+        FileA.close()
 
         FileD = open('Data 2.txt','a')
         FileAn = open('Answers.txt','a')
@@ -42,8 +42,8 @@ while(True):
         FileD.write('\n')
         FileAn.write('\n')
 
-        FileD.close
-        FileAn.close
+        FileD.close()
+        FileAn.close()
 
         #break
     else:
