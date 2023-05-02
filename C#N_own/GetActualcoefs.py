@@ -5,7 +5,7 @@ import time
 
 
 while(True):
-    FileA = open('C:\\Users\\timpf\\source\\repos\\C#\\C#N\\C#N\\DataActual.txt','r')
+    FileA = open('DataActual.txt','r')
     r = requests.get("https://api.csgorun.io/current-state?montaznayaPena=null")
     JsonText = json.loads(r.text)
     Last_id = int(JsonText['data']['game']['history'][0]['id'])
@@ -18,7 +18,7 @@ while(True):
         for item in JsonText['data']['game']['history']:
             Data.append(item['crash'])
 
-        FileA = open('C:\\Users\\timpf\\source\\repos\\C#\\C#N\\C#N\\DataActual.txt','w')
+        FileA = open('DataActual.txt','w')
 
         for q in range (12,-1,-1):
             
@@ -30,8 +30,8 @@ while(True):
         FileA.write(str(Last_id))       
         FileA.close
 
-        FileD = open('C:\\Users\\timpf\\source\\repos\\C#\\C#N\\C#N\\Data — копия.txt','a')
-        FileAn = open('C:\\Users\\timpf\\source\\repos\\C#\\C#N\\C#N\\Answers — копия.txt','a')
+        FileD = open('Data 2.txt','a')
+        FileAn = open('Answers.txt','a')
         for q in range (13,0,-1):
             FileD.write(str(Data[q]))
             if(q!=1):
