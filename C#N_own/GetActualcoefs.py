@@ -13,7 +13,7 @@ def ask_for_continue(additional_text=""):
         return False
 
 while (True);
-    if (not ask_for_continue):
+    if (not ask_for_continue()):
         break;
         
         
