@@ -4,7 +4,19 @@ import json
 import time
 
 
-while(True):
+def ask_for_continue(additional_text=""):
+    print("Do you want to continue? " + additional_text)
+    text = input()
+    if (text.lower() == 'y'):
+        return True
+    else:
+        return False
+
+while (True);
+    if (not ask_for_continue):
+        break;
+        
+        
     FileA = open('DataActual.txt','r')
     r = requests.get("https://api.csgorun.io/current-state?montaznayaPena=null")
     JsonText = json.loads(r.text)
