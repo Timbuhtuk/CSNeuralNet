@@ -11,61 +11,48 @@ def ask_for_continue(additional_text=""):
         return True
     else:
         return False
-
-while (True);
+    
+    
+while (True):
     if (not ask_for_continue()):
         break;
-        
-        
-    FileA = open('DataActual.txt','r')
-    r = requests.get("https://api.csgorun.io/current-state?montaznayaPena=null")
-    JsonText = json.loads(r.text)
-    Last_id = int(JsonText['data']['game']['history'][0]['id'])
 
-    FileA.readline()
-    if(Last_id!=int(FileA.readline())):
-        print(Last_id)
-        FileA.close()
-        Data = []
-        for item in JsonText['data']['game']['history']:
-            Data.append(item['crash'])
+    query = requests.get("https://api.csgorun.io/current-state?montaznayaPena=null")
+    json_text = json.loads(query.text)
+    last_id = int(json_text['data']['game']['history'][0]['id'])
 
-        FileA = open('DataActual.txt','w')
+    with open("data.txt", 'r') as data_file:
+        data_file.readline()
+        if (last_id == int(data_file.readline())):
+            continue
 
-        for q in range (12,-1,-1):
-            
-            FileA.write(str(Data[q]))
-            
-            if(q!=0):
-                FileA.write('/')
-        FileA.write('\n') 
-        FileA.write(str(Last_id))       
-        FileA.close()
+    with open("DataActual.txt", 'w') as data_file, open("Data 2.txt", 'a') as data_file2, open("Answers.txt", 'a') as file_answers:
 
-        FileD = open('Data 2.txt','a')
-        FileAn = open('Answers.txt','a')
-        for q in range (13,0,-1):
-            FileD.write(str(Data[q]))
-            if(q!=1):
+        data = []
+        for item in json_text['data']['game']['history']:
+            data.append(item['crash'])
+
+        for i in range (len(data), -1, -1):
+            data_file.write(str(data[q]))
+            if(i != 0):
+                data_file.write('/')
                 
-                FileD.write('/')
-        FileAn.write(str(int(Data[0]>2)))   
+        data_file.write('\n')
+        data_file.write(str(last_id))
+        
+        
+        for q in range (13,0,-1):
+            data_file2.write(str(data[q]))
+            if(q != 1):
+                data_file2.write('/')
+                
+                
+        file_answers.write(str(int(data[0] > 2)))
 
-        FileD.write('\n')
-        FileAn.write('\n')
+        file_data2.write('\n')
+        file_data2.write('\n')
 
-        FileD.close()
-        FileAn.close()
-
-        #break
-    else:
-        FileA.close
     time.sleep(1)
-
-
-
-
-
 
 
     
