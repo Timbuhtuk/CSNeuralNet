@@ -32,11 +32,11 @@ namespace C_N_own
             {
                 if (inputs[q] > 2)
                 {
-                    result[q] = 2;
+                    result[q] = 1;
                 }
                 else
                 {
-                    result[q] = inputs[q];
+                    result[q] = inputs[q]/2;
                 }
             }
             return result;
