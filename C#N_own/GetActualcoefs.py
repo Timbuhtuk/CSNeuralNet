@@ -3,6 +3,12 @@ import requests
 import json
 import time
 
+files = {
+    "data_actual" : "DataActual.txt",
+    "data_2" : "Data 2.txt",
+    "answers" : "Ansers.txt"
+}
+
 while (True):
     query = requests.get("https://api.csgorun.io/current-state?montaznayaPena=null")
     json_text = json.loads(query.text)
@@ -16,20 +22,20 @@ while (True):
         except ValueError:
             pass
 
-    with open("DataActual.txt", 'w+') as data_file, open("Data 2.txt", 'a+') as data_file2, open("Answers.txt", 'a+') as answers_file:
+    with open(files["data_actual"], 'w+') as data_file, open(files["data_2"], 'a+') as data_file2, open(files["answers"], 'a+') as answers_file:
         data = []
         for item in json_text['data']['game']['history']:
             data.append(item['crash'])
 
-        for i in range(len(data), -1, -1):
+        for q in range(len(data) - 1, -1, -1):
             data_file.write(str(data[q]))
-            if i != 0:
+            if q != 0:
                 data_file.write('/')
 
         data_file.write('\n')
         data_file.write(str(last_id))
 
-        for q in range(13,0,-1):
+        for q in range(len(data) - 1, 0, -1):
             data_file2.write(str(data[q]))
             if q != 1:
                 data_file2.write('/')
@@ -38,8 +44,3 @@ while (True):
         answers_file.write(str(int(data[0] > 2)))
 
     time.sleep(1)
-
-
-
-
-
