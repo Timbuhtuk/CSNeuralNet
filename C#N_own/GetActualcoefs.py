@@ -8,12 +8,15 @@ while (True):
     json_text = json.loads(query.text)
     last_id = int(json_text['data']['game']['history'][0]['id'])
 
-    with open("DataActual.txt", 'r') as data_file:
+    with open("DataActual.txt", 'r+') as data_file:
         data_file.readline()
-        if last_id == int(data_file.readline()):
-            continue
+        try:
+            if last_id == int(data_file.readline()):
+                continue
+        except ValueError:
+            pass
 
-    with open("DataActual.txt", 'w') as data_file, open("Data 2.txt", 'a') as data_file2, open("Answers.txt", 'a') as answers_file:
+    with open("DataActual.txt", 'w+') as data_file, open("Data 2.txt", 'a+') as data_file2, open("Answers.txt", 'a+') as answers_file:
         data = []
         for item in json_text['data']['game']['history']:
             data.append(item['crash'])
