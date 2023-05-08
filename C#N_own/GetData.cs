@@ -32,7 +32,7 @@ namespace C_N_own
             Answers = new List<double[]>();
             Inputs = new List<double[]>();
 
-            using (var sr = new StreamReader(projectDirectory+"\\Data.txt"))
+            using (var sr = new StreamReader(projectDirectory+$"{Path.DirectorySeparatorChar}Data.txt"))
             {
                 while (!sr.EndOfStream)
                 {
@@ -48,7 +48,7 @@ namespace C_N_own
                     }
             }
             }
-            using (var sr = new StreamReader(projectDirectory + "\\Answers.txt"))
+            using (var sr = new StreamReader(projectDirectory + $"{Path.DirectorySeparatorChar}Answers.txt"))
             {
                 while (!sr.EndOfStream)
                 {
@@ -81,7 +81,7 @@ namespace C_N_own
             AnswersTest = new List<double[]>();
             InputsTest = new List<double[]>();
 
-            using (var sr = new StreamReader(projectDirectory + "\\DataTest.txt"))
+            using (var sr = new StreamReader(projectDirectory + $"{Path.DirectorySeparatorChar}DataTest.txt"))
             {
                 while (!sr.EndOfStream)
                 {
@@ -99,7 +99,7 @@ namespace C_N_own
                     }
                 }
             }
-            using (var sr = new StreamReader(projectDirectory + "\\AnswersTest.txt"))
+            using (var sr = new StreamReader(projectDirectory + $"{Path.DirectorySeparatorChar}AnswersTest.txt"))
             {
                 while (!sr.EndOfStream)
                 {
@@ -130,7 +130,7 @@ namespace C_N_own
         public List<double> GetDataActual()
         {
             var data = new List<double>();
-            using (var sr = new StreamReader(projectDirectory + "\\DataActual.txt"))
+            using (var sr = new StreamReader(projectDirectory + $"{Path.DirectorySeparatorChar}DataActual.txt"))
             {
                 try { 
                 var row = sr.ReadLine().Replace(".", ",").Split('/');

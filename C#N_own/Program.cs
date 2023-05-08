@@ -44,7 +44,7 @@ namespace C_N_own
 
             
             Net net = new Net(data.Inputs[0].Length, data.Answers[0].Length,0.001,0.1, 64,10);
-            Console.WriteLine(net.Load(projectDirectory + "\\Weights.txt"));
+            Console.WriteLine(net.Load(projectDirectory + $"{Path.DirectorySeparatorChar}Weights.txt"));
 
 
             net.Test2(data.InputsTest, data.Answers);
@@ -128,7 +128,7 @@ namespace C_N_own
                 Console.WriteLine("");
 
 
-                net.Save(projectDirectory + "\\Weights.txt");
+                net.Save(projectDirectory + $"{Path.DirectorySeparatorChar}Weights.txt");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Saved");
             }
