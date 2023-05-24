@@ -10,92 +10,94 @@ namespace C_N_own
 {
     internal class Program
     {
-
-        
-            //List<double[]> inputs = new List<double[]>();
-            //double[] a1 = { 1, 0 };
-            //double[] a2 = { 0, 0 };
-            //double[] a3 = { 0, 1 };
-            //double[] a4 = { 1, 1 };
-            //inputs.Add(a1);
-            //inputs.Add(a2);
-            //inputs.Add(a3);
-            //inputs.Add(a4);
-            //List<double> ans = new List<double>();
-            //double b1 =  1 ;
-            //double b2 =  0 ;
-            //double b3 =  1 ;
-            //double b4 =  1 ;
-            //ans.Add(b1);
-            //ans.Add(b2);
-            //ans.Add(b3);
-            //ans.Add(b4);
-            //Console.WriteLine(net.Learn(inputs,ans,10000,1));
-            //Console.WriteLine(net.FeedForward(a2));
-            //Console.ReadKey();
         static void Main(string[] args)
         {
-            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-            Stopwatch stopwatch = new Stopwatch();
-            GetData data = new GetData();
-           
-            
+            #region params
+
+            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; // создание переменной для хранения директории проекта     
+            Stopwatch stopwatch = new Stopwatch(); // переменная таймера
+            GetData data = new GetData(); // создание обьекта для чткния дат сетов
+
+
             Random rng = new Random();
 
-            
-            Net net = new Net(data.Inputs[0].Length, data.Answers[0].Length,0.001,0.1, 64,10);
+
+            Net net = new Net(data.Inputs[0].Length, data.Answers[0].Length, 0.1, 0.1, 64, 10); // инициализация нейросети со следующими параметрами 
+            // Входы - в зависимости от длинны строки в файле с датасетом
+            // Выходы - в зависимости от длинны строки в файле с ответами к датасету
+            // Learning Rate - 0.1
+            // Aceleration - 0.1 (отвечает за влияние предидущего градиента на текущий)
+            // 2 скрытых слоя на 64 и 10 нейронов
+
             Console.WriteLine(net.Load(projectDirectory + $"{Path.DirectorySeparatorChar}Weights.txt"));
 
+            #endregion
 
-            net.Test2(data.InputsTest, data.Answers);
-            Console.ReadKey();
+            //net.Test2(data.InputsTest, data.Answers); //прогон тестовой выборки
 
-            //while (net.Test(data.InputsTest, data.AnswersTest) >= 0.20)
-            //{
-            //    net = new Net(13, 1, 0.1, 10, 5);
-            //}
 
-            double[] max = { 0 }, min = { 1 };
-            double[] a, prev = { 0 };
-            //200 Rounds
-            var q = 0;
-            while (net.Test(data.InputsTest, data.AnswersTest)[0] >= 0.04)
+            #region Threads Demo
+            //stopwatch.Start();
+            //var af = net.Learn(data.Inputs, data.Answers, 2, 2000);
+            //Console.WriteLine("1 Thread -> Elapsed Time is {0} ms", stopwatch.ElapsedMilliseconds);
+            //stopwatch.Restart();
+            //var aff = net.LearnThreding(data.Inputs, data.Answers, 2, 2000).Result;
+            //Console.WriteLine("many Threads -> Elapsed Time is {0} ms", stopwatch.ElapsedMilliseconds);
+            //stopwatch.Reset();
+            #endregion
+
+
+            double[] max = { 0 }, min = { 1 },a = { 0 }, prev = { 0 };//вспомогательные переменные для информативного вывода в консоль
+
+            #region Loop
+            var q = 0;//сыетчик итераций
+            while (net.Test(data.InputsTest, data.AnswersTest)[0] >= 0.04)//обучение идет до момента достижения порогового значения ошибки(в данном случае критерием качества взята среднеквадратичная ошибка)
             {
-                //Shuflle
-                int n = data.Inputs.Count;
-                while (n > 1)
-                {
-                    n--;
-                    int k = rng.Next(n + 1);
+                # region Shuflle 
 
-                    var value = data.Inputs[k];
-                    var value2 = data.Answers[k];
+                //int n = data.Inputs.Count;
+                //while (n > 1)
+                //{
+                //    n--;
+                //    int k = rng.Next(n + 1);
 
-                    data.Answers[k] = data.Answers[n];
-                    data.Inputs[k] = data.Inputs[n];
+                //    var value = data.Inputs[k];
+                //    var value2 = data.Answers[k];
 
-                    data.Inputs[n] = value;
-                    data.Answers[n] = value2;
-                }
+                //    data.Answers[k] = data.Answers[n];
+                //    data.Inputs[k] = data.Inputs[n];
+
+                //    data.Inputs[n] = value;
+                //    data.Answers[n] = value2;
+                //}
+                #endregion //алгоритм перемешивания выборки(если есть неоходимость)
 
 
-
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.White;//окрашивание текста в консоли белым
 
                 Console.WriteLine("<==========================>");
                 Console.WriteLine("Round - " + q);
-                q++;
+                q++;//вывод текущей итерации в консоль
 
-                stopwatch.Start();
-                a = net.Learn(data.Inputs, data.Answers, 100, 200);
+                stopwatch.Start();//таймер измеряющий время затраченое на итерацию обучения
+                a = net.LearnThreding(data.Inputs, data.Answers, 10, 2000).Result;//вызов метода обучения с параметрами:
+                //массив входов обучающей выборки Inputs из класса GetData
+                //массив выходов обучающей выборки Answers из класса GetData
+                //кол-во эпох на итерацию 10 
+                //размер батча 2000(позваляет запускать эпоху деля датасет на чати, в случае мультипоточной версии метода для каждого батча создается отдельный поток)
                 Console.WriteLine("Elapsed Time is {0} ms", stopwatch.ElapsedMilliseconds);
                 stopwatch.Reset();
+
+
+
+
                 Console.WriteLine("Test Error[q] - " + net.Test3(data.InputsTest, data.AnswersTest)[0]);
-                Console.WriteLine("FeedForward[0] - " + net.FeedForward(data.InputsTest[0]).Outputs[0]);
-                Console.WriteLine("FeedForward[1] - " + net.FeedForward(data.InputsTest[1]).Outputs[0]);
-                Console.WriteLine("FeedForward[2] - " + net.FeedForward(data.InputsTest[2]).Outputs[0]);
+                Console.WriteLine("FeedForward[0] - " + net.FeedForward(data.InputsTest[0]).Outputs[0] + " - expected: " + data.AnswersTest[0][0]);
+                Console.WriteLine("FeedForward[1] - " + net.FeedForward(data.InputsTest[1]).Outputs[0] + " - expected: " + data.AnswersTest[1][0]);
+                Console.WriteLine("FeedForward[2] - " + net.FeedForward(data.InputsTest[2]).Outputs[0] + " - expected: " + data.AnswersTest[2][0]);
+                //тесты повышающие информативность вывода в консоли
 
-
+                #region Console color
                 if (a[0] > prev[0] && a[0] > max[0])
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -121,22 +123,24 @@ namespace C_N_own
                     // net.LR = 0.001;
 
                 }
+                #endregion 
+                //окрашивание текста в консоли в зависимости от успехов обучения
+
                 Console.WriteLine("error = " + a[0]);
-                Console.WriteLine("        " + (prev[0] - a[0]));
+                Console.WriteLine("        " + (prev[0] - a[0])+"\n");
                 prev = a;
+                //сравнение текущей итерации с предидущей
 
-                Console.WriteLine("");
-
-
-                net.Save(projectDirectory + $"{Path.DirectorySeparatorChar}Weights.txt");
+                net.SaveAsync(projectDirectory + $"{Path.DirectorySeparatorChar}Weights.txt");//метод сохранения весов нейросети
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Saved");
             }
 
             Console.ReadKey();
-
-        }   
+            #endregion
+        }
+        
     }
-            
-    
+
+
 }

@@ -6,24 +6,21 @@ using System.Threading.Tasks;
 
 namespace C_N_own
 {
-    public class Layer
+    public class FunctionalLayer : Layer
     {
-        public int PrevCount { get; private set; }
-        public int Count { get; private set; }
-        public List<double> WeightedSum { get; private set; }
-        public List<double[]> Weights { get; private set; }
-        public List<double> Outputs { get; private set; }
-        public List<double> Inputs { get; private set; }
-        public string Type { get; private set; }
-        public List<double> Gradients { get; private set; }
-        public List<double[]> DeltaWeights { get; private set; }
-        public List<double[]> PrevDeltaWeights { get; private set; }
+        #region AcessMethods
+        public int PrevCount { get; protected set; }
+        public List<double> WeightedSum { get; protected set; }
+        public List<double[]> Weights { get; protected set; }
+        public List<double> Gradients { get; protected set; }
+        public List<double[]> DeltaWeights { get; protected set; }
+        public List<double[]> PrevDeltaWeights { get; protected set; }
+        #endregion
 
-        public Layer(int prevcount,int count,string type)
+        #region methods
+        public FunctionalLayer(int prevcount,int count,string type) : base(count,type)
         {
             PrevCount = prevcount;
-            Count = count;
-            Type = type;
             Weights = new List<double[]>(Count);
             PrevDeltaWeights = new List<double[]>(Count);
             DeltaWeights = new List<double[]>(Count);
@@ -34,52 +31,26 @@ namespace C_N_own
             
             InitRandom();
         }
-        public void InitRandom()
+        public override void InitRandom()
         {
-            if (Type != "I") {
-                Random rnd = new Random();
-                for(int q = 0; q < Count; q++)
+            Random rnd = new Random();
+            for(int q = 0; q < Count; q++)
+            {
+                Weights.Add(new double[PrevCount]);
+                PrevDeltaWeights.Add(new double[PrevCount]);
+                DeltaWeights.Add(new double[PrevCount]);
+                for (int e = 0;e<PrevCount; e++)
                 {
-                    Weights.Add(new double[PrevCount]);
-                    PrevDeltaWeights.Add(new double[PrevCount]);
-                    DeltaWeights.Add(new double[PrevCount]);
-                    for (int e = 0;e<PrevCount; e++)
-                    {
                         Weights[q][e]=(rnd.NextDouble()-0.5)*2;
                         PrevDeltaWeights[q][e] = 0.0;
                         DeltaWeights[q][e] = 0.0;
-                    }
-                }   
-            }
-            else {
-                for (int q = 0; q < Count; q++)
-                {
-                    Weights.Add(new double[PrevCount]);
-                    PrevDeltaWeights.Add(new double[PrevCount]);
-                    DeltaWeights.Add(new double[PrevCount]);
-                    for (int e = 0; e < PrevCount; e++)
-                    {
-                        Weights[q][e] = 1;
-                        PrevDeltaWeights[q][e] = 0.0;
-                        DeltaWeights[q][e] = 0.0;
-                    }
                 }
-            }
-
-            
+            }   
         }
-        public List<double> FeedForward(List<double> inputs) {
+        public override List<double> FeedForward(List<double> inputs) {
 
             Inputs = inputs;
-                WeightedSum = new List<double>(Count);
-            if(Type == "I") {
-                
-                for (int q = 0; q < Count; q++)
-                {
-                    WeightedSum.Add(inputs[q]);
-                }
-                Outputs = WeightedSum; }
-            else {
+            var WeightedSum = new List<double>(Count);
                 for (int q = 0; q < Count; q++)
                 {
                     var sum = 0.0;
@@ -89,11 +60,11 @@ namespace C_N_own
                     }
                     WeightedSum.Add(sum);
                 }
-                Outputs = Activate(WeightedSum); }
+                Outputs = Activate(WeightedSum); 
 
             return Outputs;
         }
-        public List<double> Activate(List<double> t) {
+        public override List<double> Activate(List<double> t) {
             var result = new List<double>();
             foreach(double val in t)
             {
@@ -102,7 +73,7 @@ namespace C_N_own
             }
             return result; 
         }
-        public List<double> ActivateProd(List<double> h) {
+        public override List<double> ActivateProd(List<double> h) {
             List<double> result = new List<double>(Count);
             foreach (double val in h)
             {
@@ -112,19 +83,15 @@ namespace C_N_own
 
             return result;
         }
-        public void UpdateGradients(List<double> diffs) {
-            if (Type != "I")
-            {
+        public override void UpdateGradients(List<double> diffs) {
+
                 var AP = ActivateProd(Outputs);
                 for (int q = 0; q < Gradients.Count; q++)
                 {
                     Gradients[q] += diffs[q] * AP[q];
                 }
-            }
         }
-        public void UpdateWeights(double lr,int gradientsdel,double acelleration) {
-
-            if (Type != "I") {
+        public override void UpdateWeights(double lr,int gradientsdel,double acelleration) {
                 for(int q = 0;q < Gradients.Count; q++)
                 {
                     Gradients[q] /= gradientsdel; 
@@ -143,11 +110,9 @@ namespace C_N_own
                 for (int q = 0; q < Count; q++)
                 {
                     Gradients.Add(0.0);
-                } 
-            }
-            
+                }    
         }
-        public List<double> GetPrevLayerErrors()
+        public override List<double> GetPrevLayerErrors()
         {
             var result = new List<double>(PrevCount);
             for(int q = 0;q<PrevCount; q++)
@@ -161,21 +126,11 @@ namespace C_N_own
             }
             return result; 
         }
-        public void SetWeights(List<double[]> weights)
+        public override void SetWeights(List<double[]> weights)
         {
             Weights = weights;
         }
-        public override string ToString()
-        {
-            var result = "";
-            for (int q = 0;q<Outputs.Count ;q++)
-            {
-                result += Outputs[q];
-                result += " ";
-            }
-            return result;
-        }
-        public string Save()
+        public override string Save()
         {
             var result = ""; 
             for(int q = 0; q < Weights.Count; q++)
@@ -195,7 +150,7 @@ namespace C_N_own
             }
             return result;
         }
-        public void Load(string row)
+        public override void Load(string row)
         {
             var rowsep = row.Split('*');
             var rowsepsep = new List<string[]>();
@@ -212,6 +167,81 @@ namespace C_N_own
             Weights = weights;
             
         }
-        
+        #endregion
+    }
+    public class Layer
+    {
+        public int Count { get; protected set; }
+        public List<double> Outputs { get; protected set; }
+        public List<double> Inputs { get; protected set; }
+        public string Type { get; protected set; }
+        public Layer( int count, string type) {
+            Count = count;
+            Type = type;
+        }
+        public virtual List<double> FeedForward(List<double> inputs) {
+            if (inputs.Count == Count)
+            {
+                Inputs = inputs;
+                Outputs = inputs;
+                return Outputs;
+            }
+            else
+            {
+                throw new Exception("inputs.Count != Inputs.Count in InputLayer feedforward"); 
+            }
+            
+        }
+
+
+        public virtual void InitRandom()
+        {
+            throw new Exception("InitRandom method called for InputLayer");
+        }
+        public virtual List<double> Activate(List<double> t)
+        {
+            throw new Exception("Activate method called for InputLayer");
+        }
+        public virtual List<double> ActivateProd(List<double> h)
+        {
+            throw new Exception("ActivateProd method called for InputLayer");
+        }
+        public virtual void UpdateGradients(List<double> diffs)
+        {
+            throw new Exception("UpdateGradients method called for InputLayer");
+        }
+        public virtual void UpdateWeights(double lr, int gradientsdel, double acelleration)
+        {
+            //throw new Exception("UpdateWeights method called for InputLayer");
+        }
+        public virtual List<double> GetPrevLayerErrors()
+        {
+            throw new Exception("GetPrevLayerErrors method called for InputLayer");
+        }
+        public virtual void SetWeights(List<double[]> weights)
+        {
+            throw new Exception("SetWeights method called for InputLayer");
+        }
+        public override string ToString()
+        {
+            var result = "";
+            for (int q = 0; q < Outputs.Count; q++)
+            {
+                result += Outputs[q];
+                result += " ";
+            }
+            return result;
+        }
+        public virtual string Save()
+        {
+            var result = Inputs.ToString();
+            result += "*";
+            return result;
+        }
+        public virtual  void Load(string row)
+        {
+
+        }
+
     }
 }
