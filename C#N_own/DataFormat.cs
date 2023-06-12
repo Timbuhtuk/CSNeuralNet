@@ -41,7 +41,7 @@ namespace C_N_own
             }
             return result;
         }
-       static public double[] Scaling(double[] inputs)
+        static public double[] Scaling(double[] inputs)
         {
             //тут все очень просто, вот формула:
             //   x - min
@@ -75,6 +75,28 @@ namespace C_N_own
 
 
             return result;
+        }// метод загоняет значения массива в рамки от 0 до 1(с мат формулами)
+        static public List<double[]> Scaling(List<double[]> inputs)
+        {
+            List<double[]> result = new List<double[]>(inputs.Count);
+            for(int q = 0; q < inputs.Count; q++)
+            {
+                result.Add(Scaling(inputs[q]));
+                
+            }
+
+            return result;
+        }// метод загоняет значения массива в рамки от 0 до 1(с мат формулами)
+        static public List<List<double[]>> Scaling(List<List<double[]>> inputs)
+        {
+            var result = new List<List<double[]>>();
+            for(int q = 0; q < inputs.Count; q++)
+            {
+                result.Add(Scaling(inputs[q]));
+            }
+            return result;
+
+
         }// метод загоняет значения массива в рамки от 0 до 1(с мат формулами)
         static public List<double[]> GetEveryX(List<double[]> a, int every, int sdvig)
         {
@@ -112,39 +134,7 @@ namespace C_N_own
             }
             return result;
         }// перегрузка ToOne() для работы с  List<double[]>
-        static public List<double[]> Scaling(List<double[]> inputs)
-        {
-            var result = new List<double[]>();
-            for (int q = 0; q < inputs.Count; q++)
-            {
-                result.Add(inputs[q]);
-            }
-            for (int column = 0; column < inputs[0].Length; column++)
-            {
-                var min = inputs[0][0];
-                var max = inputs[0][0];
-                for (int row = 0; row < inputs.Count; row++)
-                {
-                    var item = inputs[row][column];
-                    if (item < min)
-                    {
-                        min = item;
-                    }
-                    if (item > max)
-                    {
-                        max = item;
-                    }
-                }
-                var divider = (max - min);
-                for (int row = 0; row < inputs.Count; row++)
-                {
-                    result[row][column] = (inputs[row][column] - min) / divider;
-                }
-
-            }
-            return result;
-        }//перегрузка Scaling() для работы с  List<double[]>
-
+        
 
     }
 }

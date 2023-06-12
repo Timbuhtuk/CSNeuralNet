@@ -15,6 +15,7 @@ namespace C_N_own
         public List<Layer> Layers { get; private set; }
         public double LR { get; set; }
         public double Acelleration { get; set; }
+        public List<List<double[]>> Weights { get; private set; }
         public Net(int inputs, int outputs, double lr,double acelleration, params int[] hidden)
         {
             Layers = new List<Layer>(2 + hidden.Length);
@@ -50,17 +51,18 @@ namespace C_N_own
                     }
                 }
         public string Load(string file)
-                {
+        {
                     try
                     {
                         using (StreamReader reader = new StreamReader(file))
                         {
+                            Weights.Clear();
                             for(int q = 0;q< Layers.Count;q++)
                             {
                                 var row = reader.ReadLine();
                                 if (row != null)
                                 {
-                                    Layers[q].Load(row);
+                                    Weights.Add(Layers[q].Load(row));
                                 }
                                 else { throw new Exception("Bad Save");}
                          

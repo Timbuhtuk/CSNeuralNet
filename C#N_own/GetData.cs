@@ -10,10 +10,10 @@ namespace C_N_own
 {
     public class GetData
     {
-        public List<double[]> Answers { get { return answers; } private set { if (value != null) { answers = value; } } } 
-        public List<double[]> Inputs { get { return inputs; } private set { if (value != null) { inputs = value; } } }  
-        public List<double[]> AnswersTest { get { return answersTest; } private set { if (value != null) { answersTest = value; } } } 
-        public List<double[]> InputsTest { get { return inputsTest; } private set { if (value != null) { inputsTest = value; } } } 
+        public List<double[]> Answers { get { return answers; } private set { if (value != null) { answers = value; } } }
+        public List<double[]> Inputs { get { return inputs; } private set { if (value != null) { inputs = value; } } }
+        public List<double[]> AnswersTest { get { return answersTest; } private set { if (value != null) { answersTest = value; } } }
+        public List<double[]> InputsTest { get { return inputsTest; } private set { if (value != null) { inputsTest = value; } } }
         public List<double[]> answers; // переменная для хранения ответов к обучающей выборке датасета 
         public List<double[]> inputs; // переменная для хранения входов из обучающей выборки датасета
         public List<double[]> answersTest; // переменная для хранения ответов к тестовой выборке датасета 
@@ -22,7 +22,7 @@ namespace C_N_own
         static string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; //рабочая директория
 
 
-        
+
 
         public GetData() // конструктор заполняющий все внутрение переменные
         {
@@ -33,11 +33,14 @@ namespace C_N_own
             Inputs = DataFormat.ToBinary(Inputs); // в конструкторе данные сразу приводятся к нужному виду с помощью класса DataFormat
             InputsTest = DataFormat.ToBinary(InputsTest);
         }
+        public List<List<double[]>> GetScaledWeights(Net n){
+            return DataFormat.Scaling(n.Weights);
+}
         public void UpdateData() {
             Answers = new List<double[]>();// инициализация листа ответов обучающей выборки
             Inputs = new List<double[]>();// инициализация листа входов обучающей выборки
 
-            using (var sr = new StreamReader(projectDirectory+$"{Path.DirectorySeparatorChar}Data.txt"))// открываем файл Data.txt как sr 
+            using (var sr = new StreamReader(projectDirectory+"\\Data.txt"))
             {
                 while (!sr.EndOfStream)// пока документ не закончится
                 {

@@ -150,14 +150,14 @@ namespace C_N_own
             }
             return result;
         }
-        public override void Load(string row)
+        public override List<double[]> Load(string row)
         {
             var rowsep = row.Split('*');
             var rowsepsep = new List<string[]>();
             List<double[]> weights = new List<double[]>(); 
             foreach (string r in rowsep)
             {
-                if (r.Length == 0) return;
+                if (r.Length == 0) return null;
                 //if (r.Length == 1) {
                 //    string[] a = { "1,0" };
                 //    rowsepsep.Add(a); 
@@ -165,7 +165,7 @@ namespace C_N_own
                 weights.Add(r.Split('/').Select(v => Convert.ToDouble(v)).ToArray()); 
             }
             Weights = weights;
-            
+            return weights;
         }
         #endregion
     }
@@ -238,9 +238,9 @@ namespace C_N_own
             result += "*";
             return result;
         }
-        public virtual  void Load(string row)
+        public virtual List<double[]> Load(string row)
         {
-
+            return null;
         }
 
     }

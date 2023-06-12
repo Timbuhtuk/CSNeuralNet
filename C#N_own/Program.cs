@@ -21,13 +21,9 @@ namespace C_N_own
 
             Random rng = new Random();
 
-
-            Net net = new Net(data.Inputs[0].Length, data.Answers[0].Length, 0.1, 0.1, 64, 10); // инициализация нейросети со следующими параметрами 
-            // Входы - в зависимости от длинны строки в файле с датасетом
-            // Выходы - в зависимости от длинны строки в файле с ответами к датасету
-            // Learning Rate - 0.1
-            // Aceleration - 0.1 (отвечает за влияние предидущего градиента на текущий)
-            // 2 скрытых слоя на 64 и 10 нейронов
+            
+            Net net = new Net(data.Inputs[0].Length, data.Answers[0].Length,0.001,0.1, 64,10);
+            Console.WriteLine(net.Load(projectDirectory + "\\Weights.txt"));
 
             Console.WriteLine(net.Load(projectDirectory + $"{Path.DirectorySeparatorChar}Weights.txt"));
 
@@ -131,7 +127,7 @@ namespace C_N_own
                 prev = a;
                 //сравнение текущей итерации с предидущей
 
-                net.SaveAsync(projectDirectory + $"{Path.DirectorySeparatorChar}Weights.txt");//метод сохранения весов нейросети
+                net.Save(projectDirectory + "\\Weights.txt");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Saved");
             }
