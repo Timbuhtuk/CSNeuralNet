@@ -22,6 +22,7 @@ namespace C_N_own
             CreateInputLayer(inputs);
             CreateHiddenLayers(hidden);
             CreateOutputLayer(outputs);
+            Weights = new List<List<double[]>>();
             LR = lr;
             Acelleration = acelleration;
         }

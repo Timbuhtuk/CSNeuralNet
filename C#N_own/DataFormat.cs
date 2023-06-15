@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace C_N_own
 {
-    public class DataFormat
+    abstract class DataFormat
     {
 
         static public double[] ToBinary(double[] inputs) // метод приводит значения массива к 1 если те больше 2, и к 0 если меньше

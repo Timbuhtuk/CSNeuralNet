@@ -10,8 +10,8 @@ namespace C_N_own
 {
     internal class Program
     {
-        static void Main(string[] args)
-        {
+        public void Run() {
+
             #region params
 
             string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; // создание переменной для хранения директории проекта     
@@ -21,14 +21,13 @@ namespace C_N_own
 
             Random rng = new Random();
 
-            
-            Net net = new Net(data.Inputs[0].Length, data.Answers[0].Length,0.001,0.1, 64,10);
+
+            Net net = new Net(data.Inputs[0].Length, data.Answers[0].Length, 0.001, 0.1, 64, 10);
             Console.WriteLine(net.Load(projectDirectory + "\\Weights.txt"));
 
             Console.WriteLine(net.Load(projectDirectory + $"{Path.DirectorySeparatorChar}Weights.txt"));
 
             #endregion
-
             //net.Test2(data.InputsTest, data.Answers); //прогон тестовой выборки
 
 
@@ -43,7 +42,7 @@ namespace C_N_own
             #endregion
 
 
-            double[] max = { 0 }, min = { 1 },a = { 0 }, prev = { 0 };//вспомогательные переменные для информативного вывода в консоль
+            double[] max = { 0 }, min = { 1 }, a = { 0 }, prev = { 0 };//вспомогательные переменные для информативного вывода в консоль
 
             #region Loop
             var q = 0;//сыетчик итераций
@@ -123,7 +122,7 @@ namespace C_N_own
                 //окрашивание текста в консоли в зависимости от успехов обучения
 
                 Console.WriteLine("error = " + a[0]);
-                Console.WriteLine("        " + (prev[0] - a[0])+"\n");
+                Console.WriteLine("        " + (prev[0] - a[0]) + "\n");
                 prev = a;
                 //сравнение текущей итерации с предидущей
 
@@ -134,8 +133,31 @@ namespace C_N_own
 
             Console.ReadKey();
             #endregion
+
         }
-        
+        static void Main(string[] args)
+        {
+            #region params
+
+            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; // создание переменной для хранения директории проекта     
+            Stopwatch stopwatch = new Stopwatch(); // переменная таймера
+            GetData data = new GetData(); // создание обьекта для чткния дат сетов
+
+
+            Random rng = new Random();
+
+
+            Net net = new Net(data.Inputs[0].Length, data.Answers[0].Length, 0.001, 0.1, 64, 10);
+            Console.WriteLine(net.Load(projectDirectory + "\\Weights.txt"));
+            net.Save(projectDirectory + "\\Weights.txt");
+            Console.WriteLine(net.Load(projectDirectory + $"{Path.DirectorySeparatorChar}Weights.txt"));
+
+            #endregion
+            var a = data.GetScaledWeights(net);
+            Console.ReadKey();
+
+        }
+
     }
 
 

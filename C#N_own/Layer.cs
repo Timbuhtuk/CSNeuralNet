@@ -234,13 +234,28 @@ namespace C_N_own
         }
         public virtual string Save()
         {
-            var result = Inputs.ToString();
+            var result = "";
+            for (int q = 0; q < Count; q++)
+            {
+                    result += "1";
+                    if (q < Count - 1)
+                    {
+                        result += "/";
+                    }
+            }
             result += "*";
             return result;
         }
         public virtual List<double[]> Load(string row)
         {
-            return null;
+            List<double[]> weights = new List<double[]>();
+            double[] one = { 1.0f };
+            for (int q = 0; q < Count; q++)
+            { 
+                weights.Add(one); 
+            }
+
+            return weights;
         }
 
     }
