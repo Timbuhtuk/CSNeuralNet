@@ -14,6 +14,9 @@ namespace C_N_own
 
             #region params
 
+
+
+
             string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; // создание переменной для хранения директории проекта     
             Stopwatch stopwatch = new Stopwatch(); // переменная таймера
             GetData data = new GetData(); // создание обьекта для чткния дат сетов
@@ -21,11 +24,39 @@ namespace C_N_own
 
             Random rng = new Random();
 
+<<<<<<< HEAD
 
             Net net = new Net(data.Inputs[0].Length, data.Answers[0].Length, 0.001, 0.1, 64, 10);
+=======
+            
+
+            Net net = new Net(data.Inputs[0].Length, data.Answers[0].Length,0.001,0.1, 10,10);
+>>>>>>> e8d44cf (added some sußy stuff)
             Console.WriteLine(net.Load(projectDirectory + "\\Weights.txt"));
 
             Console.WriteLine(net.Load(projectDirectory + $"{Path.DirectorySeparatorChar}Weights.txt"));
+
+
+            #region Pipe Fucky Wucky
+            //string s = string.Format("INIT:{0} {1} {2} {3}", data.Inputs[0].Length, 10, 10, data.Answers[0].Length);
+            //NamedPipe.Write(s);
+
+            List<List<double[]>> something = data.GetScaledWeights(net);
+
+            for (int i = 0; i < something.Count; i++)
+            {
+                for (int j = 0; j < something[i].Count; j++)
+                {
+                    Console.WriteLine(something[i][j]);
+                }
+
+
+            }
+
+
+            #endregion
+
+
 
             #endregion
             //net.Test2(data.InputsTest, data.Answers); //прогон тестовой выборки
