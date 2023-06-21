@@ -15,8 +15,6 @@ namespace C_N_own
             #region params
 
 
-
-
             string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; // создание переменной для хранения директории проекта     
             Stopwatch stopwatch = new Stopwatch(); // переменная таймера
             GetData data = new GetData(); // создание обьекта для чткния дат сетов
@@ -24,17 +22,14 @@ namespace C_N_own
 
             Random rng = new Random();
 
-<<<<<<< HEAD
-
-            Net net = new Net(data.Inputs[0].Length, data.Answers[0].Length, 0.001, 0.1, 64, 10);
-=======
-            
-
             Net net = new Net(data.Inputs[0].Length, data.Answers[0].Length,0.001,0.1, 10,10);
->>>>>>> e8d44cf (added some sußy stuff)
-            Console.WriteLine(net.Load(projectDirectory + "\\Weights.txt"));
 
-            Console.WriteLine(net.Load(projectDirectory + $"{Path.DirectorySeparatorChar}Weights.txt"));
+
+
+            // Console.WriteLine(net.Load(projectDirectory + "\\Weights.txt"));
+
+
+             net.Load(projectDirectory + $"{Path.DirectorySeparatorChar}Weights.txt");
 
 
             #region Pipe Fucky Wucky
@@ -178,14 +173,56 @@ namespace C_N_own
             Random rng = new Random();
 
 
-            Net net = new Net(data.Inputs[0].Length, data.Answers[0].Length, 0.001, 0.1, 64, 10);
+            Net net = new Net(data.Inputs[0].Length, data.Answers[0].Length, 0.001, 0.1, 10, 10);
             Console.WriteLine(net.Load(projectDirectory + "\\Weights.txt"));
             net.Save(projectDirectory + "\\Weights.txt");
             Console.WriteLine(net.Load(projectDirectory + $"{Path.DirectorySeparatorChar}Weights.txt"));
 
+
+            List<List<double[]>> weights = data.GetScaledWeights(net);
+
+            Console.WriteLine(weights.Count());
+
+
+            NamedPipe.Write($"INIT:{data.Inputs[0].Length} 10 10 {data.Answers[0].Length}");
+
+            for (int i = 0; i < weights.Count(); i++)
+            {
+
+                Console.Write("{ ");
+
+                for (int j = 0; j < weights[i].Count()  && j < 10; j++)
+                {
+
+                    Console.Write("[ ");
+
+                    for (int k = 0; k < weights[i][j].Count() && k < 10; k++)
+                    {
+                        NamedPipe.Write($"WEIGHT:{i} {j} {k} {weights[i][j][k]}");
+                        Console.Write(weights[i][j][k]);
+                        Console.Write(", ");
+                    }
+
+                    Console.Write(" ]");
+
+                }
+
+                Console.WriteLine(" }");
+
+            }
+
+            Console.WriteLine("Client connected.");
+
+            while (true)
+            {
+                Console.WriteLine("Write a message: ");
+                NamedPipe.Write(Console.ReadLine());
+            }
+
+
+
             #endregion
             var a = data.GetScaledWeights(net);
-            Console.ReadKey();
 
         }
 
@@ -193,3 +230,14 @@ namespace C_N_own
 
 
 }
+/*
+Баги:
+ - веса обновляются только при изменеии размера окна
+ - при передаче WEIGHT: пробел все ламает
+
+Как использовать:
+ - чтобы инициализировать, нужно передать через NamedPipe.Write строку "INIT:<кол. нейр.> <кол. нейр.> <кол. нейр.> ..." (без угловых скобок)
+ - чтобы поменять цвет веса, через NamedPipe.Write строку "WEIGHT:<номер слоя> <номер нейрона> <номер веса> <значение от 0. до 1.>"
+ - пример: "WEIGHT:0 0 0 0.5" ("WEIGHT:<пробел>0 0 0 0.5" все ломает)
+ - в Program.cs я уже это реализовал, но количество слоев некорректное
+*/

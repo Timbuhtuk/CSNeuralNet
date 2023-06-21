@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="/NL_GUI/">
+    <file alias="Main.qml">/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/Main.qml</file>
+    <file alias="Layer.qml">/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/Layer.qml</file>
+    <file alias="Line.qml">/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/Line.qml</file>
+    <file alias="CenteredCircle.qml">/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CenteredCircle.qml</file>
+  </qresource>
+</RCC>
+

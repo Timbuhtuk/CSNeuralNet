@@ -1,0 +1,2 @@
+/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/appNL_GUI_autogen/include/../EWIEGA46WW/moc_pipe_reader.cpp.json
+/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/appNL_GUI_autogen/include/../EWIEGA46WW/moc_pipe_worker.cpp.json

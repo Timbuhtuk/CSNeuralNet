@@ -1,0 +1,3 @@
+/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/cmake -E rm -f CMakeFiles/appNL_GUI.dir/objects.a
+/usr/bin/ar qc CMakeFiles/appNL_GUI.dir/objects.a @CMakeFiles/appNL_GUI.dir/objects1.rsp
+/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ -mwindows -Wl,--gc-sections -pthread -Wl,--whole-archive CMakeFiles/appNL_GUI.dir/objects.a -Wl,--no-whole-archive -o appNL_GUI.exe -Wl,--out-implib,libappNL_GUI.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/appNL_GUI.dir/linkLibs.rsp

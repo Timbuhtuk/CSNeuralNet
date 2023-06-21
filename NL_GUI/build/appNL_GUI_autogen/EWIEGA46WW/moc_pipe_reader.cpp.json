@@ -1,0 +1,128 @@
+{
+    "classes": [
+        {
+            "classInfos": [
+                {
+                    "name": "QML.Element",
+                    "value": "auto"
+                }
+            ],
+            "className": "PipeReader",
+            "methods": [
+                {
+                    "access": "public",
+                    "name": "start",
+                    "returnType": "void"
+                }
+            ],
+            "object": true,
+            "properties": [
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": false,
+                    "index": 0,
+                    "name": "str",
+                    "notify": "strChanged",
+                    "read": "str",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "QString",
+                    "user": false,
+                    "write": "setStr"
+                }
+            ],
+            "qualifiedClassName": "PipeReader",
+            "signals": [
+                {
+                    "access": "public",
+                    "name": "startWorker",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "type": "QString"
+                        }
+                    ],
+                    "name": "dataFetched",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "type": "QString"
+                        }
+                    ],
+                    "name": "strChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "data",
+                            "type": "QList<QVariant>"
+                        }
+                    ],
+                    "name": "initDataFetched",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "layer",
+                            "type": "int"
+                        },
+                        {
+                            "name": "neuron",
+                            "type": "int"
+                        },
+                        {
+                            "name": "value",
+                            "type": "double"
+                        }
+                    ],
+                    "name": "weightDataFetched",
+                    "returnType": "void"
+                }
+            ],
+            "slots": [
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "str",
+                            "type": "QString"
+                        }
+                    ],
+                    "name": "getResult",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "st",
+                            "type": "QString"
+                        }
+                    ],
+                    "name": "setStr",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "pipe_reader.h",
+    "outputRevision": 68
+}

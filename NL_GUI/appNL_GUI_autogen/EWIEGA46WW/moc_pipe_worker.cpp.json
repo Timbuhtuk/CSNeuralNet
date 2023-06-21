@@ -1,0 +1,36 @@
+{
+    "classes": [
+        {
+            "className": "PipeWorker",
+            "object": true,
+            "qualifiedClassName": "PipeWorker",
+            "signals": [
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "type": "QString"
+                        }
+                    ],
+                    "name": "result",
+                    "returnType": "void"
+                }
+            ],
+            "slots": [
+                {
+                    "access": "public",
+                    "name": "exec",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "pipe_worker.h",
+    "outputRevision": 68
+}
