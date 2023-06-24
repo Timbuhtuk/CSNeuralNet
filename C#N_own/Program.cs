@@ -153,7 +153,7 @@ namespace C_N_own
             Console.WriteLine(net.Load(projectDirectory + $"{Path.DirectorySeparatorChar}Weights.txt"));
 
             #endregion
-            var a = data.GetScaledWeights(net);
+            var a = data.GetScaledStringWeights(net);
             Console.ReadKey();
 
         }

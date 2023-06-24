@@ -68,12 +68,20 @@ namespace C_N_own
                 }
             }
             var divider = (max - min);
-            for (int row = 0; row < inputs.Length; row++)
+            if (divider == 0)
             {
-                result[row] = (inputs[row] - min) / divider;
+                for (int row = 0; row < inputs.Length; row++)
+                {
+                    result[row] = 1.0;
+                }
+
             }
-
-
+            else {  
+                for (int row = 0; row < inputs.Length; row++)
+                {
+                    result[row] = (inputs[row] - min) / divider;
+                }
+            }
             return result;
         }// метод загоняет значения массива в рамки от 0 до 1(с мат формулами)
         static public List<double[]> Scaling(List<double[]> inputs)
