@@ -11,7 +11,6 @@ namespace C_N_own
         #region AcessMethods
         public int PrevCount { get; protected set; }
         public List<double> WeightedSum { get; protected set; }
-        public List<double[]> Weights { get; protected set; }
         public List<double> Gradients { get; protected set; }
         public List<double[]> DeltaWeights { get; protected set; }
         public List<double[]> PrevDeltaWeights { get; protected set; }
@@ -171,6 +170,7 @@ namespace C_N_own
     }
     public class Layer
     {
+        public List<double[]> Weights { get; protected set; }
         public int Count { get; protected set; }
         public List<double> Outputs { get; protected set; }
         public List<double> Inputs { get; protected set; }
@@ -178,6 +178,12 @@ namespace C_N_own
         public Layer( int count, string type) {
             Count = count;
             Type = type;
+            Weights = new List<double[]>(count);
+            double[] a = { 1.0 };
+            for(int q = 0; q < Count; q++)
+            {
+                Weights.Add(a);
+            }
         }
         public virtual List<double> FeedForward(List<double> inputs) {
             if (inputs.Count == Count)
@@ -257,6 +263,7 @@ namespace C_N_own
 
             return weights;
         }
+        public List<double[]> GetWeights() { return Weights; }
 
     }
 }

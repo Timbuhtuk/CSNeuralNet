@@ -50,7 +50,7 @@ namespace C_N_own
                             writer.WriteLine(Layers[q].Save());
                         }
                     }
-                }
+        }
         public string Load(string file)
         {
                     try
@@ -74,6 +74,14 @@ namespace C_N_own
                     catch(Exception e) { Console.WriteLine(e); /*System.Environment.Exit(0);*/ }
                     return "";
                 }
+        public List<List<double[]>> GetWeights() {
+
+            List<List<double[]>> result = new List<List<double[]>>();
+            for (int q = 0; q < Layers.Count; q++) {
+                result.Add(Layers[q].GetWeights());
+            }
+            return result;
+        }
         #endregion
 
         #region Vanilla NN
