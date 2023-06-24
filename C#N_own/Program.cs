@@ -230,7 +230,6 @@ namespace C_N_own
 
 
             #endregion
-            var a = data.GetScaledWeights(net);
 
         }
 
