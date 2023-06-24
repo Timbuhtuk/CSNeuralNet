@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Layouts
 import QtQuick.Controls
-import NL_GUI
 
 Window {
 
@@ -19,7 +18,7 @@ Window {
 
     function destroyAll() {
 
-        for (var i = 0; i < layers.length - 1; i++) {
+        for (var i = 0; i < layers.length; i++) {
             for (var j = 0; j < layers[i]; j++) {
 
                 neurons[i][j].destroy()
@@ -163,6 +162,7 @@ Window {
         }
     }
 
+    /*
 
     PipeReader {
         id: pipe
@@ -180,20 +180,24 @@ Window {
 
             }
         }
-        /*
+
         onWeightFetchedFlat: function(number, value) {
             repeat.itemAt(number).color = rgb(value, 0, 0, 0)
         }
-        */
+
 
 
     }
+
+    */
 
     Button {
         property int red: 0
         text: "Push Me "
         onPressed: {
-            pipe.start()
+            destroyAll()
+            createNeurons()
+            connectNeurons()
         }
     }
 
@@ -231,12 +235,6 @@ Window {
     onWidthChanged: {
         connectNeurons()
     }
-
-    onLayersChanged: {
-        destroyAll()
-    }
-
-
 }
 
 

@@ -20,7 +20,7 @@ qt_add_executable(appNL_GUI
 qt_add_qml_module(appNL_GUI
     URI NL_GUI
     VERSION 1.0
-    QML_FILES Main.qml Layer.qml Line.qml CenteredCircle.qml
+    QML_FILES Main.qml Layer.qml Line.qml CenteredCircle.qml Weights.qml NeuralVisualization.qml
 )
 
 set_target_properties(appNL_GUI PROPERTIES

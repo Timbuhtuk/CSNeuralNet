@@ -2,6 +2,9 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
+
+
+
 ColumnLayout {
 
     required property int numberOfNeurons

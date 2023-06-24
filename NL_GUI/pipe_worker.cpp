@@ -21,7 +21,6 @@ PipeWorker::PipeWorker(QObject* parent) : QObject{parent}
 
 void PipeWorker::exec()
 {
-    emit result("WEIGHT: 0 0 0 0.1");
     emit result("WEIGHT: 0 0 0 0.9");
 
 #ifdef _WIN32
