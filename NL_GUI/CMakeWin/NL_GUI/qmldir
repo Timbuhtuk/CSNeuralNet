@@ -5,4 +5,6 @@ Main 1.0 Main.qml
 Layer 1.0 Layer.qml
 Line 1.0 Line.qml
 CenteredCircle 1.0 CenteredCircle.qml
+Weights 1.0 Weights.qml
+NeuralVisualization 1.0 NeuralVisualization.qml
 

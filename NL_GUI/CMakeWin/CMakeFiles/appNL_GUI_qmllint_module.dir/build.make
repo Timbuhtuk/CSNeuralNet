@@ -71,6 +71,8 @@ CMakeFiles/appNL_GUI_qmllint_module: /home/kotowhiskas/Programming\ Projects/QML
 CMakeFiles/appNL_GUI_qmllint_module: /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/Layer.qml
 CMakeFiles/appNL_GUI_qmllint_module: /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/Line.qml
 CMakeFiles/appNL_GUI_qmllint_module: /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/CenteredCircle.qml
+CMakeFiles/appNL_GUI_qmllint_module: /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/Weights.qml
+CMakeFiles/appNL_GUI_qmllint_module: /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/NeuralVisualization.qml
 	cd "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI" && /home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/qt6/bin/qmllint -I /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/CMakeWin -I /home/kotowhiskas/Documents/mxe/usr/x86_64-w64-mingw32.static/qt6/./qml --resource /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/CMakeWin/.rcc/qmake_NL_GUI.qrc --resource /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/CMakeWin/.rcc/appNL_GUI_raw_qml_0.qrc --module NL_GUI
 
 appNL_GUI_qmllint_module: CMakeFiles/appNL_GUI_qmllint_module

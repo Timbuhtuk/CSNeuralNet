@@ -56,6 +56,11 @@ void PipeReader::getResult(const QString& str)
             QVariant::fromValue(redValue) << " emitted";
     }
 
+    else if (key == "WEIGHTS")
+    {
+        emitResults(value);
+    }
+
     else if (key == "WEIGHTFLAT")
     {
         emit weightFetchedFlat(QVariant::fromValue(values[0]),
@@ -68,9 +73,35 @@ void PipeReader::getResult(const QString& str)
     else
     {
         qDebug() << "Nothing has been emitted";
+        qDebug() << "Result: " << str;
     }
 
 
+}
+
+void PipeReader::emitResults(const QString& str) {
+
+    QList<QString> layers{str.split('|')};
+    QList<QString> neurons;
+    QList<QString> weights;
+
+    for (int layerIndex{}; layerIndex < layers.size(); ++layerIndex)
+    {
+        neurons = layers[layerIndex].split('*');
+
+        for (int neuronIndex{}; neuronIndex < neurons.size(); ++neuronIndex)
+        {
+            weights = neurons[neuronIndex].split('/');
+
+            for (int weightIndex{}; weightIndex < weights.size(); ++weightIndex)
+            {
+                qDebug() << "Value: " << weights[weightIndex] <<
+                    "; layer: " << layerIndex <<
+                    "; neuron: " << neuronIndex <<
+                    "; weight: " << weightIndex;
+            }
+        }
+    }
 }
 
 void PipeReader::start()

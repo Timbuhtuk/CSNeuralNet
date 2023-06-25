@@ -29,6 +29,10 @@ public:
     QString str() { return *m_str; }
 
 
+    void emitResults(const QString& str);
+
+
+
 signals:
     void startWorker();
     void dataFetched(QString);
@@ -40,8 +44,11 @@ signals:
 public slots:
     void getResult(const QString& str);
 
-    void setStr(const QString& st) { *m_str = st; emit strChanged(st);
-        qInfo() << "Str has changed"; }
+    void setStr(const QString& st)
+    {
+        *m_str = st; emit strChanged(st);
+        qInfo() << "Str has changed";
+    }
 
 };
 

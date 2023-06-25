@@ -4,6 +4,8 @@
     <file alias="Layer.qml">/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/Layer.qml</file>
     <file alias="Line.qml">/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/Line.qml</file>
     <file alias="CenteredCircle.qml">/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CenteredCircle.qml</file>
+    <file alias="Weights.qml">/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/Weights.qml</file>
+    <file alias="NeuralVisualization.qml">/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/NeuralVisualization.qml</file>
   </qresource>
 </RCC>
 

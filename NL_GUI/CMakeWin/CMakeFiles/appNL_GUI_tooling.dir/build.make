@@ -82,10 +82,20 @@ NL_GUI/CenteredCircle.qml: /home/kotowhiskas/Programming\ Projects/QML\ Projects
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Generating NL_GUI/CenteredCircle.qml"
 	cd "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI" && /home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/cmake -E copy "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CenteredCircle.qml" "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/NL_GUI/CenteredCircle.qml"
 
+NL_GUI/Weights.qml: /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/Weights.qml
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Generating NL_GUI/Weights.qml"
+	cd "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI" && /home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/cmake -E copy "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/Weights.qml" "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/NL_GUI/Weights.qml"
+
+NL_GUI/NeuralVisualization.qml: /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/NeuralVisualization.qml
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Generating NL_GUI/NeuralVisualization.qml"
+	cd "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI" && /home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/cmake -E copy "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/NeuralVisualization.qml" "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/NL_GUI/NeuralVisualization.qml"
+
 appNL_GUI_tooling: NL_GUI/CenteredCircle.qml
 appNL_GUI_tooling: NL_GUI/Layer.qml
 appNL_GUI_tooling: NL_GUI/Line.qml
 appNL_GUI_tooling: NL_GUI/Main.qml
+appNL_GUI_tooling: NL_GUI/NeuralVisualization.qml
+appNL_GUI_tooling: NL_GUI/Weights.qml
 appNL_GUI_tooling: CMakeFiles/appNL_GUI_tooling.dir/build.make
 .PHONY : appNL_GUI_tooling
 

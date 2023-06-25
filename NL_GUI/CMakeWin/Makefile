@@ -413,6 +413,54 @@ CMakeWin/.rcc/qmlcache/appNL_GUI_Main_qml.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/appNL_GUI.dir/build.make CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Main_qml.cpp.s
 .PHONY : CMakeWin/.rcc/qmlcache/appNL_GUI_Main_qml.cpp.s
 
+CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.obj: CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.obj
+.PHONY : CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.obj
+
+# target to build an object file
+CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/appNL_GUI.dir/build.make CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.obj
+.PHONY : CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.obj
+
+CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.i: CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.i
+.PHONY : CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.i
+
+# target to preprocess a source file
+CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/appNL_GUI.dir/build.make CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.i
+.PHONY : CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.i
+
+CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.s: CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.s
+.PHONY : CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.s
+
+# target to generate assembly for a file
+CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/appNL_GUI.dir/build.make CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.s
+.PHONY : CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.s
+
+CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.obj: CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.obj
+.PHONY : CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.obj
+
+# target to build an object file
+CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/appNL_GUI.dir/build.make CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.obj
+.PHONY : CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.obj
+
+CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.i: CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.i
+.PHONY : CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.i
+
+# target to preprocess a source file
+CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/appNL_GUI.dir/build.make CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.i
+.PHONY : CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.i
+
+CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.s: CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.s
+.PHONY : CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.s
+
+# target to generate assembly for a file
+CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/appNL_GUI.dir/build.make CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.s
+.PHONY : CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.s
+
 CMakeWin/.rcc/qmlcache/appNL_GUI_qmlcache_loader.obj: CMakeWin/.rcc/qmlcache/appNL_GUI_qmlcache_loader.cpp.obj
 .PHONY : CMakeWin/.rcc/qmlcache/appNL_GUI_qmlcache_loader.obj
 
@@ -641,6 +689,12 @@ help:
 	@echo "... CMakeWin/.rcc/qmlcache/appNL_GUI_Main_qml.obj"
 	@echo "... CMakeWin/.rcc/qmlcache/appNL_GUI_Main_qml.i"
 	@echo "... CMakeWin/.rcc/qmlcache/appNL_GUI_Main_qml.s"
+	@echo "... CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.obj"
+	@echo "... CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.i"
+	@echo "... CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.s"
+	@echo "... CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.obj"
+	@echo "... CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.i"
+	@echo "... CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.s"
 	@echo "... CMakeWin/.rcc/qmlcache/appNL_GUI_qmlcache_loader.obj"
 	@echo "... CMakeWin/.rcc/qmlcache/appNL_GUI_qmlcache_loader.i"
 	@echo "... CMakeWin/.rcc/qmlcache/appNL_GUI_qmlcache_loader.s"

@@ -33,6 +33,20 @@ namespace _0x5f_NL_GUI_CenteredCircle_qml {
         reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
     };
 }
+namespace _0x5f_NL_GUI_Weights_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::TypedFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _0x5f_NL_GUI_NeuralVisualization_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::TypedFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
 
 }
 namespace {
@@ -51,6 +65,8 @@ Registry::Registry() {
     resourcePathToCachedUnit.insert(QStringLiteral("/NL_GUI/Layer.qml"), &QmlCacheGeneratedCode::_0x5f_NL_GUI_Layer_qml::unit);
     resourcePathToCachedUnit.insert(QStringLiteral("/NL_GUI/Line.qml"), &QmlCacheGeneratedCode::_0x5f_NL_GUI_Line_qml::unit);
     resourcePathToCachedUnit.insert(QStringLiteral("/NL_GUI/CenteredCircle.qml"), &QmlCacheGeneratedCode::_0x5f_NL_GUI_CenteredCircle_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/NL_GUI/Weights.qml"), &QmlCacheGeneratedCode::_0x5f_NL_GUI_Weights_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/NL_GUI/NeuralVisualization.qml"), &QmlCacheGeneratedCode::_0x5f_NL_GUI_NeuralVisualization_qml::unit);
     QQmlPrivate::RegisterQmlUnitCacheHook registration;
     registration.structVersion = 0;
     registration.lookupCachedQmlUnit = &lookupCachedUnit;

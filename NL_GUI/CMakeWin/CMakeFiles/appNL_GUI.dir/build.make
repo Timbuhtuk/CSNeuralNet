@@ -149,20 +149,42 @@ NL_GUI/appNL_GUI.qmltypes: appnl_gui_qmltyperegistrations.cpp
 	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/cmake -E make_directory "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmlcache"
 	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/qt6/libexec/qmlcachegen --bare --resource-path /NL_GUI/CenteredCircle.qml -I "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin" -I /home/kotowhiskas/Documents/mxe/usr/x86_64-w64-mingw32.static/qt6/./qml -i "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/NL_GUI/qmldir" --resource "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmake_NL_GUI.qrc" --resource "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/appNL_GUI_raw_qml_0.qrc" -o "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp" "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CenteredCircle.qml"
 
+.rcc/qmlcache/appNL_GUI_Weights_qml.cpp: /home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/qt6/libexec/qmlcachegen
+.rcc/qmlcache/appNL_GUI_Weights_qml.cpp: /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/Weights.qml
+.rcc/qmlcache/appNL_GUI_Weights_qml.cpp: .rcc/qmake_NL_GUI.qrc
+.rcc/qmlcache/appNL_GUI_Weights_qml.cpp: .rcc/appNL_GUI_raw_qml_0.qrc
+.rcc/qmlcache/appNL_GUI_Weights_qml.cpp: NL_GUI/appNL_GUI.qmltypes
+.rcc/qmlcache/appNL_GUI_Weights_qml.cpp: NL_GUI/qmldir
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Generating .rcc/qmlcache/appNL_GUI_Weights_qml.cpp"
+	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/cmake -E make_directory "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmlcache"
+	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/qt6/libexec/qmlcachegen --bare --resource-path /NL_GUI/Weights.qml -I "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin" -I /home/kotowhiskas/Documents/mxe/usr/x86_64-w64-mingw32.static/qt6/./qml -i "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/NL_GUI/qmldir" --resource "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmake_NL_GUI.qrc" --resource "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/appNL_GUI_raw_qml_0.qrc" -o "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp" "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/Weights.qml"
+
+.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp: /home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/qt6/libexec/qmlcachegen
+.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp: /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/NeuralVisualization.qml
+.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp: .rcc/qmake_NL_GUI.qrc
+.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp: .rcc/appNL_GUI_raw_qml_0.qrc
+.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp: NL_GUI/appNL_GUI.qmltypes
+.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp: NL_GUI/qmldir
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Generating .rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp"
+	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/cmake -E make_directory "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmlcache"
+	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/qt6/libexec/qmlcachegen --bare --resource-path /NL_GUI/NeuralVisualization.qml -I "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin" -I /home/kotowhiskas/Documents/mxe/usr/x86_64-w64-mingw32.static/qt6/./qml -i "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/NL_GUI/qmldir" --resource "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmake_NL_GUI.qrc" --resource "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/appNL_GUI_raw_qml_0.qrc" -o "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp" "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/NeuralVisualization.qml"
+
 .rcc/qrc_appNL_GUI_raw_qml_0.cpp: /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/Main.qml
 .rcc/qrc_appNL_GUI_raw_qml_0.cpp: /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/Layer.qml
 .rcc/qrc_appNL_GUI_raw_qml_0.cpp: /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/Line.qml
 .rcc/qrc_appNL_GUI_raw_qml_0.cpp: /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/CenteredCircle.qml
+.rcc/qrc_appNL_GUI_raw_qml_0.cpp: /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/Weights.qml
+.rcc/qrc_appNL_GUI_raw_qml_0.cpp: /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/NeuralVisualization.qml
 .rcc/qrc_appNL_GUI_raw_qml_0.cpp: .rcc/appNL_GUI_raw_qml_0.qrc
 .rcc/qrc_appNL_GUI_raw_qml_0.cpp: /home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/qt6/./libexec/rcc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Running rcc for resource appNL_GUI_raw_qml_0"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Running rcc for resource appNL_GUI_raw_qml_0"
 	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/qt6/libexec/rcc --output "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qrc_appNL_GUI_raw_qml_0.cpp" --name appNL_GUI_raw_qml_0 "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/appNL_GUI_raw_qml_0.qrc"
 
 CMakeFiles/appNL_GUI.dir/appNL_GUI_autogen/mocs_compilation.cpp.obj: CMakeFiles/appNL_GUI.dir/flags.make
 CMakeFiles/appNL_GUI.dir/appNL_GUI_autogen/mocs_compilation.cpp.obj: CMakeFiles/appNL_GUI.dir/includes_CXX.rsp
 CMakeFiles/appNL_GUI.dir/appNL_GUI_autogen/mocs_compilation.cpp.obj: appNL_GUI_autogen/mocs_compilation.cpp
 CMakeFiles/appNL_GUI.dir/appNL_GUI_autogen/mocs_compilation.cpp.obj: CMakeFiles/appNL_GUI.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/appNL_GUI.dir/appNL_GUI_autogen/mocs_compilation.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/appNL_GUI.dir/appNL_GUI_autogen/mocs_compilation.cpp.obj"
 	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/appNL_GUI.dir/appNL_GUI_autogen/mocs_compilation.cpp.obj -MF CMakeFiles/appNL_GUI.dir/appNL_GUI_autogen/mocs_compilation.cpp.obj.d -o CMakeFiles/appNL_GUI.dir/appNL_GUI_autogen/mocs_compilation.cpp.obj -c "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/appNL_GUI_autogen/mocs_compilation.cpp"
 
 CMakeFiles/appNL_GUI.dir/appNL_GUI_autogen/mocs_compilation.cpp.i: cmake_force
@@ -177,7 +199,7 @@ CMakeFiles/appNL_GUI.dir/main.cpp.obj: CMakeFiles/appNL_GUI.dir/flags.make
 CMakeFiles/appNL_GUI.dir/main.cpp.obj: CMakeFiles/appNL_GUI.dir/includes_CXX.rsp
 CMakeFiles/appNL_GUI.dir/main.cpp.obj: /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/main.cpp
 CMakeFiles/appNL_GUI.dir/main.cpp.obj: CMakeFiles/appNL_GUI.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/appNL_GUI.dir/main.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/appNL_GUI.dir/main.cpp.obj"
 	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/appNL_GUI.dir/main.cpp.obj -MF CMakeFiles/appNL_GUI.dir/main.cpp.obj.d -o CMakeFiles/appNL_GUI.dir/main.cpp.obj -c "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/main.cpp"
 
 CMakeFiles/appNL_GUI.dir/main.cpp.i: cmake_force
@@ -192,7 +214,7 @@ CMakeFiles/appNL_GUI.dir/pipe_reader.cpp.obj: CMakeFiles/appNL_GUI.dir/flags.mak
 CMakeFiles/appNL_GUI.dir/pipe_reader.cpp.obj: CMakeFiles/appNL_GUI.dir/includes_CXX.rsp
 CMakeFiles/appNL_GUI.dir/pipe_reader.cpp.obj: /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/pipe_reader.cpp
 CMakeFiles/appNL_GUI.dir/pipe_reader.cpp.obj: CMakeFiles/appNL_GUI.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/appNL_GUI.dir/pipe_reader.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/appNL_GUI.dir/pipe_reader.cpp.obj"
 	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/appNL_GUI.dir/pipe_reader.cpp.obj -MF CMakeFiles/appNL_GUI.dir/pipe_reader.cpp.obj.d -o CMakeFiles/appNL_GUI.dir/pipe_reader.cpp.obj -c "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/pipe_reader.cpp"
 
 CMakeFiles/appNL_GUI.dir/pipe_reader.cpp.i: cmake_force
@@ -207,7 +229,7 @@ CMakeFiles/appNL_GUI.dir/pipe_worker.cpp.obj: CMakeFiles/appNL_GUI.dir/flags.mak
 CMakeFiles/appNL_GUI.dir/pipe_worker.cpp.obj: CMakeFiles/appNL_GUI.dir/includes_CXX.rsp
 CMakeFiles/appNL_GUI.dir/pipe_worker.cpp.obj: /home/kotowhiskas/Programming\ Projects/QML\ Projects/NL_GUI/pipe_worker.cpp
 CMakeFiles/appNL_GUI.dir/pipe_worker.cpp.obj: CMakeFiles/appNL_GUI.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/appNL_GUI.dir/pipe_worker.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/appNL_GUI.dir/pipe_worker.cpp.obj"
 	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/appNL_GUI.dir/pipe_worker.cpp.obj -MF CMakeFiles/appNL_GUI.dir/pipe_worker.cpp.obj.d -o CMakeFiles/appNL_GUI.dir/pipe_worker.cpp.obj -c "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/pipe_worker.cpp"
 
 CMakeFiles/appNL_GUI.dir/pipe_worker.cpp.i: cmake_force
@@ -222,7 +244,7 @@ CMakeFiles/appNL_GUI.dir/appnl_gui_qmltyperegistrations.cpp.obj: CMakeFiles/appN
 CMakeFiles/appNL_GUI.dir/appnl_gui_qmltyperegistrations.cpp.obj: CMakeFiles/appNL_GUI.dir/includes_CXX.rsp
 CMakeFiles/appNL_GUI.dir/appnl_gui_qmltyperegistrations.cpp.obj: appnl_gui_qmltyperegistrations.cpp
 CMakeFiles/appNL_GUI.dir/appnl_gui_qmltyperegistrations.cpp.obj: CMakeFiles/appNL_GUI.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/appNL_GUI.dir/appnl_gui_qmltyperegistrations.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/appNL_GUI.dir/appnl_gui_qmltyperegistrations.cpp.obj"
 	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Wa,-mbig-obj -MD -MT CMakeFiles/appNL_GUI.dir/appnl_gui_qmltyperegistrations.cpp.obj -MF CMakeFiles/appNL_GUI.dir/appnl_gui_qmltyperegistrations.cpp.obj.d -o CMakeFiles/appNL_GUI.dir/appnl_gui_qmltyperegistrations.cpp.obj -c "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/appnl_gui_qmltyperegistrations.cpp"
 
 CMakeFiles/appNL_GUI.dir/appnl_gui_qmltyperegistrations.cpp.i: cmake_force
@@ -237,7 +259,7 @@ CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_qmake_NL_GUI.cpp.obj: CMakeFiles/appN
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_qmake_NL_GUI.cpp.obj: CMakeFiles/appNL_GUI.dir/includes_CXX.rsp
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_qmake_NL_GUI.cpp.obj: .rcc/qrc_qmake_NL_GUI.cpp
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_qmake_NL_GUI.cpp.obj: CMakeFiles/appNL_GUI.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_qmake_NL_GUI.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_qmake_NL_GUI.cpp.obj"
 	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_qmake_NL_GUI.cpp.obj -MF CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_qmake_NL_GUI.cpp.obj.d -o CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_qmake_NL_GUI.cpp.obj -c "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qrc_qmake_NL_GUI.cpp"
 
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_qmake_NL_GUI.cpp.i: cmake_force
@@ -252,7 +274,7 @@ CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_qmlcache_loader.cpp.ob
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_qmlcache_loader.cpp.obj: CMakeFiles/appNL_GUI.dir/includes_CXX.rsp
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_qmlcache_loader.cpp.obj: .rcc/qmlcache/appNL_GUI_qmlcache_loader.cpp
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_qmlcache_loader.cpp.obj: CMakeFiles/appNL_GUI.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_qmlcache_loader.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_qmlcache_loader.cpp.obj"
 	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_qmlcache_loader.cpp.obj -MF CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_qmlcache_loader.cpp.obj.d -o CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_qmlcache_loader.cpp.obj -c "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmlcache/appNL_GUI_qmlcache_loader.cpp"
 
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_qmlcache_loader.cpp.i: cmake_force
@@ -267,7 +289,7 @@ CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Main_qml.cpp.obj: CMak
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Main_qml.cpp.obj: CMakeFiles/appNL_GUI.dir/includes_CXX.rsp
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Main_qml.cpp.obj: .rcc/qmlcache/appNL_GUI_Main_qml.cpp
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Main_qml.cpp.obj: CMakeFiles/appNL_GUI.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Main_qml.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Main_qml.cpp.obj"
 	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Main_qml.cpp.obj -MF CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Main_qml.cpp.obj.d -o CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Main_qml.cpp.obj -c "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmlcache/appNL_GUI_Main_qml.cpp"
 
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Main_qml.cpp.i: cmake_force
@@ -282,7 +304,7 @@ CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Layer_qml.cpp.obj: CMa
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Layer_qml.cpp.obj: CMakeFiles/appNL_GUI.dir/includes_CXX.rsp
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Layer_qml.cpp.obj: .rcc/qmlcache/appNL_GUI_Layer_qml.cpp
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Layer_qml.cpp.obj: CMakeFiles/appNL_GUI.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Layer_qml.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Layer_qml.cpp.obj"
 	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Layer_qml.cpp.obj -MF CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Layer_qml.cpp.obj.d -o CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Layer_qml.cpp.obj -c "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmlcache/appNL_GUI_Layer_qml.cpp"
 
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Layer_qml.cpp.i: cmake_force
@@ -297,7 +319,7 @@ CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Line_qml.cpp.obj: CMak
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Line_qml.cpp.obj: CMakeFiles/appNL_GUI.dir/includes_CXX.rsp
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Line_qml.cpp.obj: .rcc/qmlcache/appNL_GUI_Line_qml.cpp
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Line_qml.cpp.obj: CMakeFiles/appNL_GUI.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Line_qml.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Line_qml.cpp.obj"
 	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Line_qml.cpp.obj -MF CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Line_qml.cpp.obj.d -o CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Line_qml.cpp.obj -c "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmlcache/appNL_GUI_Line_qml.cpp"
 
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Line_qml.cpp.i: cmake_force
@@ -312,7 +334,7 @@ CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp.obj: CMakeFiles/appNL_GUI.dir/includes_CXX.rsp
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp.obj: .rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp.obj: CMakeFiles/appNL_GUI.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp.obj"
 	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp.obj -MF CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp.obj.d -o CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp.obj -c "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp"
 
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp.i: cmake_force
@@ -323,11 +345,41 @@ CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp.s"
 	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp" -o CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp.s
 
+CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.obj: CMakeFiles/appNL_GUI.dir/flags.make
+CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.obj: CMakeFiles/appNL_GUI.dir/includes_CXX.rsp
+CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.obj: .rcc/qmlcache/appNL_GUI_Weights_qml.cpp
+CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.obj: CMakeFiles/appNL_GUI.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.obj"
+	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.obj -MF CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.obj.d -o CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.obj -c "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp"
+
+CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.i"
+	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp" > CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.i
+
+CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.s"
+	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp" -o CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.s
+
+CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.obj: CMakeFiles/appNL_GUI.dir/flags.make
+CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.obj: CMakeFiles/appNL_GUI.dir/includes_CXX.rsp
+CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.obj: .rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp
+CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.obj: CMakeFiles/appNL_GUI.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.obj"
+	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.obj -MF CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.obj.d -o CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.obj -c "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp"
+
+CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.i"
+	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp" > CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.i
+
+CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.s"
+	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp" -o CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.s
+
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_appNL_GUI_raw_qml_0.cpp.obj: CMakeFiles/appNL_GUI.dir/flags.make
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_appNL_GUI_raw_qml_0.cpp.obj: CMakeFiles/appNL_GUI.dir/includes_CXX.rsp
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_appNL_GUI_raw_qml_0.cpp.obj: .rcc/qrc_appNL_GUI_raw_qml_0.cpp
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_appNL_GUI_raw_qml_0.cpp.obj: CMakeFiles/appNL_GUI.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_appNL_GUI_raw_qml_0.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_appNL_GUI_raw_qml_0.cpp.obj"
 	/home/kotowhiskas/Documents/mxe/usr/x86_64-pc-linux-gnu/bin/x86_64-w64-mingw32.static-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_appNL_GUI_raw_qml_0.cpp.obj -MF CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_appNL_GUI_raw_qml_0.cpp.obj.d -o CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_appNL_GUI_raw_qml_0.cpp.obj -c "/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/.rcc/qrc_appNL_GUI_raw_qml_0.cpp"
 
 CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_appNL_GUI_raw_qml_0.cpp.i: cmake_force
@@ -351,6 +403,8 @@ appNL_GUI_OBJECTS = \
 "CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Layer_qml.cpp.obj" \
 "CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Line_qml.cpp.obj" \
 "CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp.obj" \
+"CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.obj" \
+"CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.obj" \
 "CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_appNL_GUI_raw_qml_0.cpp.obj"
 
 # External object files for target appNL_GUI
@@ -391,6 +445,8 @@ appNL_GUI.exe: CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Main_qm
 appNL_GUI.exe: CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Layer_qml.cpp.obj
 appNL_GUI.exe: CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Line_qml.cpp.obj
 appNL_GUI.exe: CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp.obj
+appNL_GUI.exe: CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_Weights_qml.cpp.obj
+appNL_GUI.exe: CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp.obj
 appNL_GUI.exe: CMakeFiles/appNL_GUI.dir/CMakeWin/.rcc/qrc_appNL_GUI_raw_qml_0.cpp.obj
 appNL_GUI.exe: /home/kotowhiskas/Documents/mxe/usr/x86_64-w64-mingw32.static/qt6/plugins/qmltooling/objects-Release/QDebugMessageServiceFactoryPlugin_init/QDebugMessageServiceFactoryPlugin_init.cpp.obj
 appNL_GUI.exe: /home/kotowhiskas/Documents/mxe/usr/x86_64-w64-mingw32.static/qt6/plugins/qmltooling/objects-Release/QLocalClientConnectionFactoryPlugin_init/QLocalClientConnectionFactoryPlugin_init.cpp.obj
@@ -617,7 +673,7 @@ appNL_GUI.exe: /home/kotowhiskas/Documents/mxe/usr/x86_64-w64-mingw32.static/qt6
 appNL_GUI.exe: CMakeFiles/appNL_GUI.dir/linkLibs.rsp
 appNL_GUI.exe: CMakeFiles/appNL_GUI.dir/objects1.rsp
 appNL_GUI.exe: CMakeFiles/appNL_GUI.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Linking CXX executable appNL_GUI.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/CMakeWin/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_26) "Linking CXX executable appNL_GUI.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/appNL_GUI.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -632,6 +688,8 @@ CMakeFiles/appNL_GUI.dir/depend: .rcc/qmlcache/appNL_GUI_CenteredCircle_qml.cpp
 CMakeFiles/appNL_GUI.dir/depend: .rcc/qmlcache/appNL_GUI_Layer_qml.cpp
 CMakeFiles/appNL_GUI.dir/depend: .rcc/qmlcache/appNL_GUI_Line_qml.cpp
 CMakeFiles/appNL_GUI.dir/depend: .rcc/qmlcache/appNL_GUI_Main_qml.cpp
+CMakeFiles/appNL_GUI.dir/depend: .rcc/qmlcache/appNL_GUI_NeuralVisualization_qml.cpp
+CMakeFiles/appNL_GUI.dir/depend: .rcc/qmlcache/appNL_GUI_Weights_qml.cpp
 CMakeFiles/appNL_GUI.dir/depend: .rcc/qmlcache/appNL_GUI_qmlcache_loader.cpp
 CMakeFiles/appNL_GUI.dir/depend: .rcc/qrc_appNL_GUI_raw_qml_0.cpp
 CMakeFiles/appNL_GUI.dir/depend: .rcc/qrc_qmake_NL_GUI.cpp
