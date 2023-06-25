@@ -190,6 +190,11 @@ namespace C_N_own
 
             Console.WriteLine(weights.Count());
 
+            NamedPipe.Write($"INIT:{data.GetScaledStringWeights(net)}");
+            NamedPipe.Write($"WEIGHTS:{data.GetScaledStringWeights(net)}");
+
+
+
             /*
             NamedPipe.Write($"INIT:{data.Inputs[0].Length} 10 10 {data.Answers[0].Length}");
 
