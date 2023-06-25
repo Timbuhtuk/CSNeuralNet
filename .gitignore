@@ -364,3 +364,7 @@ FodyWeavers.xsd
 
 # exe files - those linked QML are fat AF
 *.exe
+
+# compilation related files
+
+*.obj.d
