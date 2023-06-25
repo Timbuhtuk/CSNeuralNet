@@ -383,3 +383,5 @@ NL_GUI/.qt
 NL_GUI/.rcc
 NL_GUI/.generated
 NL_GUI/.qt_plugins
+NL_GUI/CMakeFiles
+NL_GUI/2Main.qml
