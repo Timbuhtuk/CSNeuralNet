@@ -368,3 +368,18 @@ FodyWeavers.xsd
 # compilation related files
 
 *.obj.d
+
+NL_GUI/CMakeWin/
+
+NL_GUI/qmltypes
+
+NL_GUI/meta_types
+
+NL_GUI/build
+NL_GUI/appNL_GUI_autogen
+NL_GUI/NL_GUI
+
+NL_GUI/.qt
+NL_GUI/.rcc
+NL_GUI/.generated
+NL_GUI/.qt_plugins

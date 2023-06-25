@@ -184,14 +184,17 @@ namespace C_N_own
             net.Save(projectDirectory + "\\Weights.txt");
             Console.WriteLine(net.Load(projectDirectory + $"{Path.DirectorySeparatorChar}Weights.txt"));
 
-            Console.WriteLine(data.GetScaledStringWeights(net));
 
             List<List<double[]>> weights = data.GetScaledWeights(net);
 
             Console.WriteLine(weights.Count());
 
+            Console.WriteLine("first data portion");
             NamedPipe.Write($"INIT:{data.GetScaledStringWeights(net)}");
+            Console.WriteLine("second data portion");
             NamedPipe.Write($"WEIGHTS:{data.GetScaledStringWeights(net)}");
+            Console.WriteLine("done");
+
 
 
 
