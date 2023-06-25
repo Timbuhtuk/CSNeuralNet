@@ -34,11 +34,11 @@ namespace C_N_own
             InputsTest = DataFormat.ToBinary(InputsTest);
         }
         public List<List<double[]>> GetScaledWeights(Net n){
-            return DataFormat.Scaling(n.Weights);
+            return DataFormat.Scaling(n.GetWeights());
         }
         public string GetScaledStringWeights(Net n)
         {
-            return DataFormat.WeightsToString(DataFormat.Scaling(n.Weights));
+            return DataFormat.WeightsToString(DataFormat.Scaling(n.GetWeights()));
         }
         public void UpdateData() {
             Answers = new List<double[]>();// инициализация листа ответов обучающей выборки

@@ -15,16 +15,25 @@ namespace C_N_own
         public List<Layer> Layers { get; private set; }
         public double LR { get; set; }
         public double Acelleration { get; set; }
-        public List<List<double[]>> Weights { get; private set; }
         public Net(int inputs, int outputs, double lr,double acelleration, params int[] hidden)
         {
             Layers = new List<Layer>(2 + hidden.Length);
             CreateInputLayer(inputs);
             CreateHiddenLayers(hidden);
             CreateOutputLayer(outputs);
-            Weights = new List<List<double[]>>();
+
             LR = lr;
             Acelleration = acelleration;
+        }
+        public Net(Config config)
+        {
+            Layers = new List<Layer>(2 + config.HiddenLayers.Length);
+            CreateInputLayer(config.Inputs);
+            CreateHiddenLayers(config.HiddenLayers);
+            CreateOutputLayer(config.Outputs);
+
+            LR = config.LR;
+            Acelleration = config.Acelleration;
         }
 
         private void CreateInputLayer(int inputs)
@@ -57,13 +66,13 @@ namespace C_N_own
                     {
                         using (StreamReader reader = new StreamReader(file))
                         {
-                            Weights.Clear();
+
                             for(int q = 0;q< Layers.Count;q++)
                             {
                                 var row = reader.ReadLine();
                                 if (row != null)
                                 {
-                                    Weights.Add(Layers[q].Load(row));
+                                   Layers[q].Load(row);
                                 }
                                 else { throw new Exception("Bad Save");}
                          
@@ -150,7 +159,7 @@ namespace C_N_own
         #endregion
 
         #region TestMedods
-        public double[] Test(List<double[]> inputs, List<double[]> answers)
+        public double[] TestBasic(List<double[]> inputs, List<double[]> answers)
         {
             double[] error = new double[answers[0].Length];
             for (int e = 0; e < inputs.Count; e++)
@@ -177,7 +186,17 @@ namespace C_N_own
 
             return error;
         }
-        public double[] Test3(List<double[]> inputs, List<double[]> answers)
+        public void TestCompare(List<double[]> inputs, List<double[]> answers)
+                {
+                    for (int e = 0; e < inputs.Count; e++)
+                    {
+                        var a = FeedForward(inputs[e]).Outputs[0];
+                        Console.Write(a+" - "); 
+                        Console.WriteLine(answers[e][0]);
+                    }
+            
+                }
+        public double[] TestWithScaledFFs(List<double[]> inputs, List<double[]> answers)
         {
             double[] error = new double[answers[0].Length];
             List<double[]> FFs = new List<double[]>();
@@ -199,16 +218,7 @@ namespace C_N_own
             { error[f] /= inputs.Count; }
             return error;
         }
-        public void Test2(List<double[]> inputs, List<double[]> answers)
-        {
-            for (int e = 0; e < inputs.Count; e++)
-            {
-                var a = FeedForward(inputs[e]).Outputs[0];
-                Console.Write(a+" - "); 
-                Console.WriteLine(answers[e][0]);
-            }
-            
-        }
+        
         #endregion
 
         #region Async Trash
@@ -216,36 +226,41 @@ namespace C_N_own
         {
             var counter = 0;
             double[] error = new double[answers[0].Length];
-            int threadscount = (answers.Count / batch)-1;
-            List<double[]> Diffs = new List<double[]>();
-            List<Task< List<double[]> >> Tasks = new List<Task<List<double[]>>>(threadscount);
+            int threadscount = answers.Count / batch;
+            
+                
 
             for (int q = 0; q < epoch; q++)
-            {
-                for(int e = 0; e < threadscount; e++)
-                {
-                    var input = inputs.GetRange(e * batch, batch);
-                    var answer = answers.GetRange(e * batch, batch);
-                    Tasks.Add(Task.Run(()=>GetDiffs(input,answer)));
-                }
-                //for (int e = 0; e < threadscount; e++)
-                //{
-                //    Tasks[q].Wait();
-                //}
-                for (int e = 0; e < threadscount; e++)
-                {
-                    Diffs.AddRange(Tasks[q].Result);
-                }
-                BackPropagationForAsyncLearn(Diffs);
+            {   List<double[]> Diffs = new List<double[]>();
+                List<Task<List<double[]>>> Tasks = new List<Task<List<double[]>>>();
 
-                for (int e = 0; e < Diffs.Count; e++)
-                {
-                    for (int w = 0; w < answers[0].Length; w++)
+
+
+                    for(int e = 0; e < threadscount; e++)
                     {
-                        error[w] += Math.Abs(Diffs[e][w]);
-                        counter++;
+                        var input = inputs.GetRange(e * batch, batch);
+                        var answer = answers.GetRange(e * batch, batch);
+                        Tasks.Add(Task.Run(()=>GetDiffs(input,answer)));
                     }
-                }
+                    
+                    
+
+
+
+                   for (int e = 0; e < threadscount; e++)
+                   {
+                        Diffs.AddRange(Tasks[e].Result);
+                   }
+                    
+                    BackPropagationForAsyncLearn(Diffs);
+                    for (int e = 0; e < Diffs.Count; e++)
+                    {
+                        for (int w = 0; w < answers[0].Length; w++)
+                        {
+                            error[w] += Math.Abs(Diffs[e][w]);
+                            counter++;
+                        }
+                    } 
 
 
 
@@ -260,11 +275,12 @@ namespace C_N_own
         private List<double[]> GetDiffs(List<double[]> inputs, List<double[]> answers)
         {
             List<double[]> result = new List<double[]>(inputs.Count);
+
             for(int q = 0;q<inputs.Count; q++)
             {
                 var FF = FeedForward(inputs[q]).Outputs;
                 double[] diff = new double[FF.Count];
-                for (int w = 0; w < diff.Length; w++)
+                for (int w = 0; w < FF.Count; w++)
                 {
                     diff[w] = FF[w] - answers[q][w];
                 }
@@ -304,13 +320,16 @@ namespace C_N_own
         }
         #endregion
 
-        private double[] BackPropagation2(List<double[]> input, List<double[]> answer)
+        private double[] BackPropagationWithScaledFFs(List<double[]> input, List<double[]> answer)
         {
             double[] error = new double[answer[0].Length];
             List<double[]> FFs = new List<double[]>();
 
             for (int e = 0; e < input.Count; e++)
-            { FFs.Add(FeedForward(input[e]).Outputs.ToArray()); }
+            { 
+                FFs.Add(FeedForward(input[e]).Outputs.ToArray()); 
+            }
+
             FFs = DataFormat.Scaling(FFs);
             for (int e = 0; e < input.Count; e++)
             {
