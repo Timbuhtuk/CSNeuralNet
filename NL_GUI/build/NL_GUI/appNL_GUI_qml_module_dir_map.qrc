@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="/">
-    <file alias="/NL_GUI">/home/kotowhiskas/Programming Projects/QML Projects/NL_GUI/build/NL_GUI</file>
-
-  </qresource>
-</RCC>
