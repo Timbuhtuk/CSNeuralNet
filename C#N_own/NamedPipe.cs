@@ -21,7 +21,7 @@ namespace C_N_own
 
         public static void Write(string text)
         {
-            byte[] messageBytes = Encoding.UTF8.GetBytes(text + "\n");
+            byte[] messageBytes = Encoding.UTF8.GetBytes(text);
             pipeClient.Write(messageBytes, 0, messageBytes.Length);
         }
     }
