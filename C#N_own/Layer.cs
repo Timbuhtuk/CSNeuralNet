@@ -151,9 +151,16 @@ namespace C_N_own
         }
         public override List<double[]> Load(string row)
         {
+
             var rowsep = row.Split('*');
+
+            if (rowsep.Length != Count) {
+                throw new Exception("Topology Changed without Weights.txt cleaning");
+            }
+
             var rowsepsep = new List<string[]>();
             List<double[]> weights = new List<double[]>(); 
+
             foreach (string r in rowsep)
             {
                 if (r.Length == 0) return null;
@@ -163,6 +170,7 @@ namespace C_N_own
                 //}
                 weights.Add(r.Split('/').Select(v => Convert.ToDouble(v)).ToArray()); 
             }
+
             Weights = weights;
             return weights;
         }
