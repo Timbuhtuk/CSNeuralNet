@@ -16,6 +16,7 @@ namespace C_N_own
         static public void RunAsync(int Q = 100,int Batch = 1000,int epoch = 100) {
 
             #region params
+            Net net = new Net(config);
 
 
             string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; // создание переменной для хранения директории проекта     
@@ -25,7 +26,6 @@ namespace C_N_own
 
             Random rng = new Random();
 
-            Net net = new Net(data.Inputs[0].Length, data.Answers[0].Length,0.001,0.1, 10,10);
 
 
 
@@ -42,22 +42,12 @@ namespace C_N_own
 
 
 
-            List<List<double[]>> something = data.GetScaledWeights(net);
 
-            for (int i = 0; i < something.Count; i++)
-            {
-                for (int j = 0; j < something[i].Count; j++)
-                {
-                    Console.WriteLine(something[i][j]);
-                }
-
-
-            }
 
 
             #endregion
 
-            Net net = new Net(config);
+
 
 
             #endregion
@@ -182,11 +172,7 @@ namespace C_N_own
 
             Console.WriteLine(weights.Count());
 
-            //Console.WriteLine("first data portion");
-            //NamedPipe.Write($"INIT:{data.GetScaledStringWeights(net)}");
-            Console.WriteLine("second data portion");
-            NamedPipe.Write($"WEIGHTS:{data.GetScaledStringWeights(net)}");
-            Console.WriteLine("done");
+
 
 
 
@@ -358,6 +344,15 @@ namespace C_N_own
             //net.Test2(data.InputsTest, data.Answers); //прогон тестовой выборки
 
 
+            Console.WriteLine(data.GetScaledStringWeights(net));
+
+            NamedPipe.Write($"INIT:{data.GetScaledStringWeights(net)}");
+            Console.WriteLine("first data portion >> done");
+            NamedPipe.Write($"WEIGHTS:{data.GetScaledStringWeights(net)}");
+            Console.WriteLine("second data portion >> done");
+
+            return;
+
             double[] max = { 0 }, min = { 1 }, a = { 0 }, prev = { 0 };//вспомогательные переменные для информативного вывода в консоль
 
             #region Loop
@@ -486,7 +481,7 @@ namespace C_N_own
         static void Main(string[] args)
         {
 
-            RunAsync(100, 2000, 200);
+            Run(100, 2000, 200);
 
 
 

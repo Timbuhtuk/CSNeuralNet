@@ -11,7 +11,6 @@ Item {
                + b.toString(16).padStart(2, "0");
       }
 
-    property int weightValue: 0
     property int old: 0
 
     property string color: "black"

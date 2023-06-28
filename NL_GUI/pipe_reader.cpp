@@ -27,13 +27,19 @@ void PipeReader::getResult(const QString& str)
     auto key{ qstrSplit[0] };
     QString value{ qstrSplit[1] };
     auto values = value.trimmed().split(' ');
-    if (key == "INIT")
+    if (key == "INITPRINT")
     {
         qDebug() << "NOT initializing with values: " << getInitData(value);
 
 
         // emit initDataFetched(getInitData(value));
     }
+
+    else if (key == "INIT")
+    {
+        emit initDataFetched(getInitData(value));
+    }
+
     else if (key == "WEIGHT")
     {
         qDebug() << "Emitting changed function";
@@ -44,17 +50,18 @@ void PipeReader::getResult(const QString& str)
                                QVariant::fromValue(values[1].toInt()),
                                QVariant::fromValue(values[2].toInt()),
                                QVariant::fromValue(redValue));
-
-        qDebug() << "Values: " << QVariant::fromValue(values[0].toInt()) <<
-            QVariant::fromValue(values[1].toInt()) <<
-            QVariant::fromValue(values[2].toInt()) <<
-            QVariant::fromValue(redValue) << " emitted";
     }
 
     else if (key == "WEIGHTS")
     {
         qDebug() << "Weights triggered";
-        emitResults(value);
+        emitResults(value, false);
+    }
+
+    else if (key == "WEIGHTSPRINT")
+    {
+        qDebug() << "Weights triggered";
+        emitResults(value, true);
     }
 
     else if (key == "WEIGHTFLAT")
@@ -74,13 +81,21 @@ void PipeReader::getResult(const QString& str)
 
 }
 
-void PipeReader::emitResults(const QString& str) {
+
+// TODO
+QString PipeReader::convertToRGBA(int r, int g, int b, int a)
+{
+    return {};
+}
+
+void PipeReader::emitResults(const QString& str, bool print) {
 
     QList<QString> layers{str.split('|')};
     QList<QString> neurons;
     QList<QString> weights;
+    int redValue{};
 
-    for (int layerIndex{}; layerIndex < layers.size(); ++layerIndex)
+    for (int layerIndex{0}; layerIndex < layers.size(); ++layerIndex)
     {
         neurons = layers[layerIndex].split('*');
 
@@ -90,13 +105,18 @@ void PipeReader::emitResults(const QString& str) {
 
             for (int weightIndex{}; weightIndex < weights.size(); ++weightIndex)
             {
-                qDebug() << "Value: " << weights[weightIndex] <<
-                    "; layer: " << layerIndex <<
-                    "; neuron: " << neuronIndex <<
-                    "; weight: " << weightIndex;
+                if (print)
+                {
+                    qDebug() << "Value: " << weights[weightIndex] <<
+                        "; layer: " << layerIndex <<
+                        "; neuron: " << neuronIndex <<
+                        "; weight: " << weightIndex;
+                    continue;
+                }
 
-                emit weightDataFetched(layerIndex, neuronIndex, weightIndex,
-                                       QVariant::fromValue(weights[weightIndex].toDouble()));
+
+                redValue = static_cast<int>(weights[weightIndex].toDouble() * 255.0);
+                emit weightDataFetched(layerIndex, neuronIndex, weightIndex, redValue);
 
             }
         }

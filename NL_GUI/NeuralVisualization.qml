@@ -24,12 +24,24 @@ Item {
       }
 
     function getNeuron(layer, index) {
-        return neurons.itemAt(layer).items.itemAt(index).circle
+
+        var neu = neurons.itemAt(layer)
+        if (neu) {
+
+            neu = neu.items.itemAt(index)
+            if (neu) {
+                return neu.circle
+            }
+
+        }
+
+        return null
 
     }
 
     function getWeight(layer, neuron, index) {
-        var comp = weights.itemAt(layer)
+
+        var comp = weights.itemAt(layer + 1)
 
         if (comp) {
 
@@ -46,6 +58,7 @@ Item {
         }
 
         return null
+
 
 
         // return weights.itemAt(layer).itemAt(neuron).itemAt(index)
@@ -80,11 +93,44 @@ Item {
         }
     }
 
+    function connectNeuronsBack() {
+        for (var i = 1; i < layers.length; i++) {
+
+            for (var j = 0; j < layers[i]; j++) {
+
+                var startNeuron = getNeuron(i, j)
+                var smh = startNeuron.mapToItem(root, 20, 20)
+
+                for (var k = 0; k < layers[i - 1]; k++) {
+
+                    var weight = getWeight(i - 1, j, k)
+
+                    var endNeuron = getNeuron(i - 1, k)
+                    // print("connecting weight of ", i, j, k, "from", i, j, "to", i - 1, k, "misc", j, layers[i])
+
+                    if (startNeuron === null || endNeuron === null || weight === null) {
+                        print("not found")
+                        continue
+                    }
+
+                    var smh2 = endNeuron.mapToItem(root, 20, 20)
+
+                    weight.startX = smh.x
+                    weight.startY = smh.y
+                    weight.endX = smh2.x
+                    weight.endY = smh2.y
+
+
+                }
+            }
+        }
+    }
+
 
 
     Repeater {
         id: weights
-        model: layers.length - 1
+        model: layers.length
 
         delegate: Repeater {
 
@@ -95,10 +141,18 @@ Item {
             delegate: Repeater {
 
                 required property int index
-                model: layers[botIndex + 1]
+
+                property int anotherIndex: index
+                model: (botIndex === 0 ? 0 : layers[botIndex - 1])
 
                 delegate: Line {
+                    required property int index
+
                     anchors.fill: parent
+
+                    Component.onCompleted: {
+                        // print("created;", botIndex, anotherIndex, index)
+                    }
                 }
             }
         }
@@ -126,14 +180,14 @@ Item {
 
 
     onWidthChanged: {
-        connectNeurons()
+        connectNeuronsBack()
     }
 
     onHeightChanged: {
-        connectNeurons()
+        connectNeuronsBack()
     }
 
     Component.onCompleted: {
-        connectNeurons()
+        connectNeuronsBack()
     }
 }

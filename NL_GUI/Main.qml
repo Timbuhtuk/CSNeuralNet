@@ -34,19 +34,31 @@ Window {
             root.updateModel(data)
         }
 
+        // TODO: move logic to NeuralVisualization class
         onWeightDataFetched: function(layer, neuron, weight, value) {
+            print("entering weight function", layer, neuron, weight, "with value", value)
             var line = neuralVisualization.getWeight(layer, neuron, weight)
 
-            if (!line) {
+            if (line === null) {
+                print("weight ", layer, neuron, weight, "with value", value, "doesn't exist")
                 return
             }
 
-            line.color = neuralVisualization.rgb(value, value - line.old, 0, 0)
+            if (line.old > value) {
+                line.color = neuralVisualization.rgb(value, 0, 0, 0)
+                print("setting colors on ", layer, neuron, weight, "with value", ": R: ", value, "G: ", 0, "B: ", 0)
 
-            line.weightValue = value
+            }
 
-            print("setting colors on ", line, ": ", line.weightValue, line.weightValue - line.old, 0, 0)
-            line.old = line.weightValue
+            else {
+                line.color = neuralVisualization.rgb(0, value, 0, 0)
+                print("setting colors on ", layer, neuron, weight, "with value", ": R: ", 0, "G: ", value, "B: ", 0)
+
+            }
+
+
+
+            line.old = value
         }
     }
 

@@ -13,15 +13,15 @@ namespace C_N_own
         // Windows реализация
         static NamedPipe()
         {
-            Console.WriteLine("Waiting for client to connect to the pipe...");
+            Console.WriteLine("Waiting for server to connect to the pipe...");
             pipeClient = new NamedPipeClientStream(".", "mynamedpipe", PipeDirection.InOut);
             pipeClient.Connect();
-            Console.WriteLine("Client connected.");
+            Console.WriteLine("Server connected.");
         }
 
         public static void Write(string text)
         {
-            byte[] messageBytes = Encoding.UTF8.GetBytes(text);
+            byte[] messageBytes = Encoding.UTF8.GetBytes(text + '\n');
             pipeClient.Write(messageBytes, 0, messageBytes.Length);
         }
     }

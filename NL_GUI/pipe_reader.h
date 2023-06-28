@@ -29,8 +29,10 @@ public:
     QString str() { return *m_str; }
 
 
-    void emitResults(const QString& str);
+    void emitResults(const QString& str, bool print = true);
     QList<QVariant> getInitData(const QString& str);
+    QString convertToRGBA(int r, int g, int b, int a);
+
 
 
 signals:

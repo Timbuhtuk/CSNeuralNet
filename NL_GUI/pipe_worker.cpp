@@ -23,10 +23,11 @@ PipeWorker::PipeWorker(QObject* parent) : QObject{parent}
 
 void PipeWorker::exec()
 {
+
 #ifdef _WIN32
     HANDLE hPipe;
-    char* buffer = new char[1024 * 64];
     DWORD dwRead;
+    char buffer[1024 * 64];
 
     hPipe = CreateNamedPipe(TEXT("\\\\.\\pipe\\mynamedpipe"),
                             PIPE_ACCESS_DUPLEX,
@@ -50,17 +51,17 @@ void PipeWorker::exec()
                 buffer[dwRead] = '\0';
                 /* do something with data in buffer */
 
-                string += QString::fromUtf8(buffer);
+
+                qDebug("result recieved");
+                emit result(QString::fromUtf8(buffer));
+
             }
         }
-        qDebug("result recieved");
-        emit result(string);
-        string.clear();
-
-        delete[] buffer;
 
         DisconnectNamedPipe(hPipe);
+        qDebug() << "pipe disconnected";
     }
+
 #endif
 
 }
