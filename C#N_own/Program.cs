@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace C_N_own
@@ -12,14 +13,17 @@ namespace C_N_own
 
     internal class Program
     {
-        static Config config = new Config(13, 1, 1, 0.1, 16,8,4);
-        static public void RunAsync(int Q = 100,int Batch = 1000,int epoch = 100) {
+
+        static string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; // создание переменной для хранения директории проекта 
+
+        static Config config = new Config(13, 1, 1, 0.1, "Data.txt", "Answers.txt", "DataTest.txt", "AnswersTest.txt", 16,8,4);
+        static public void RunMultiThread(int Q = 100,int Batch = 1000,int epoch = 100) {
 
             #region params
 
-            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; // создание переменной для хранения директории проекта     
+                
             Stopwatch stopwatch = new Stopwatch(); // переменная таймера
-            GetData data = new GetData(); // создание обьекта для чткния дат сетов
+            GetData data = new GetData(config); // создание обьекта для чткния дат сетов
 
 
             Random rng = new Random();
@@ -67,7 +71,7 @@ namespace C_N_own
                 stopwatch.Start();//таймер измеряющий время затраченое на итерацию обучения
 
 
-                a = net.LearnThreding(data.Inputs, data.Answers, epoch, Batch).Result;//вызов метода обучения с параметрами:
+                a = net.LearnWithThreding(data.Inputs, data.Answers, epoch, Batch).Result;//вызов метода обучения с параметрами:
                 //массив входов обучающей выборки Inputs из класса GetData
                 //массив выходов обучающей выборки Answers из класса GetData
                 //кол-во эпох на итерацию 10 
@@ -78,7 +82,7 @@ namespace C_N_own
 
 
                 #region Console Info
-                Console.WriteLine("Test Error[q] - " + net.TestWithScaledFFs(data.InputsTest, data.AnswersTest)[0]);
+
                 Console.WriteLine("FeedForward[0] - " + net.FeedForward(data.InputsTest[0]).Outputs[0] + " - expected: " + data.AnswersTest[0][0]);
                 Console.WriteLine("FeedForward[1] - " + net.FeedForward(data.InputsTest[1]).Outputs[0] + " - expected: " + data.AnswersTest[1][0]);
                 Console.WriteLine("FeedForward[2] - " + net.FeedForward(data.InputsTest[2]).Outputs[0] + " - expected: " + data.AnswersTest[2][0]);
@@ -127,14 +131,14 @@ namespace C_N_own
             #endregion
 
         }
-        static public void RunAsyncN(int Q = 100, int Batch = 1000, int epoch = 100)
+        static public void RunMultiThreadN(int Q = 100, int Batch = 1000, int epoch = 100)
         {
 
             #region params
 
-            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; // создание переменной для хранения директории проекта     
+              
             Stopwatch stopwatch = new Stopwatch(); // переменная таймера
-            GetData data = new GetData(); // создание обьекта для чткния дат сетов
+            GetData data = new GetData(config); // создание обьекта для чткния дат сетов
 
 
             Random rng = new Random();
@@ -181,11 +185,11 @@ namespace C_N_own
                 stopwatch.Start();//таймер измеряющий время затраченое на итерацию обучения
 
 
-                a = net.LearnThreding(data.Inputs, data.Answers, epoch, Batch).Result;//вызов метода обучения с параметрами:
-                                                                                      //массив входов обучающей выборки Inputs из класса GetData
-                                                                                      //массив выходов обучающей выборки Answers из класса GetData
-                                                                                      //кол-во эпох на итерацию 10 
-                                                                                      //размер батча 2000(позваляет запускать эпоху деля датасет на чати, в случае мультипоточной версии метода для каждого батча создается отдельный поток)
+                a = net.LearnWithThreding(data.Inputs, data.Answers, epoch, Batch).Result;//вызов метода обучения с параметрами:
+                                                                                          //массив входов обучающей выборки Inputs из класса GetData
+                                                                                          //массив выходов обучающей выборки Answers из класса GetData
+                                                                                          //кол-во эпох на итерацию 10 
+                                                                                          //размер батча 2000(позваляет запускать эпоху деля датасет на чати, в случае мультипоточной версии метода для каждого батча создается отдельный поток)
 
 
                 if (q % 101 == 100)
@@ -196,7 +200,6 @@ namespace C_N_own
                     stopwatch.Reset();
                     #region Console Info
 
-                    Console.WriteLine("Test Error[q] - " + net.TestWithScaledFFs(data.InputsTest, data.AnswersTest)[0]);
                     Console.WriteLine("FeedForward[0] - " + net.FeedForward(data.InputsTest[0]).Outputs[0] + " - expected: " + data.AnswersTest[0][0]);
                     Console.WriteLine("FeedForward[1] - " + net.FeedForward(data.InputsTest[1]).Outputs[0] + " - expected: " + data.AnswersTest[1][0]);
                     Console.WriteLine("FeedForward[2] - " + net.FeedForward(data.InputsTest[2]).Outputs[0] + " - expected: " + data.AnswersTest[2][0]);
@@ -251,14 +254,14 @@ namespace C_N_own
 
                 Console.ReadKey();
         }
-        static public void Run(int Q = 100, int Batch = 1000, int epoch = 100)
+        static public void SimpleRun(int Q = 100, int Batch = 1000, int epoch = 100)
         {
 
             #region params
 
-            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; // создание переменной для хранения директории проекта     
+            
             Stopwatch stopwatch = new Stopwatch(); // переменная таймера
-            GetData data = new GetData(); // создание обьекта для чтения дата сетов
+            GetData data = new GetData(config); // создание обьекта для чтения дата сетов
 
 
             Random rng = new Random();
@@ -316,7 +319,6 @@ namespace C_N_own
 
                 #region Console Info
 
-                Console.WriteLine("Test Error[q] - " + net.TestWithScaledFFs(data.InputsTest, data.AnswersTest)[0]);
                 Console.WriteLine("FeedForward[0] - " + net.FeedForward(data.InputsTest[0]).Outputs[0] + " - expected: " + data.AnswersTest[0][0]);
                 Console.WriteLine("FeedForward[1] - " + net.FeedForward(data.InputsTest[1]).Outputs[0] + " - expected: " + data.AnswersTest[1][0]);
                 Console.WriteLine("FeedForward[2] - " + net.FeedForward(data.InputsTest[2]).Outputs[0] + " - expected: " + data.AnswersTest[2][0]);
@@ -370,9 +372,9 @@ namespace C_N_own
 
             #region params
 
-            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; // создание переменной для хранения директории проекта     
+               
             Stopwatch stopwatch = new Stopwatch(); // переменная таймера
-            GetData data = new GetData(); // создание обьекта для чткния дат сетов
+            GetData data = new GetData(config); // создание обьекта для чткния дат сетов
 
 
             Random rng = new Random();
@@ -392,16 +394,40 @@ namespace C_N_own
             var af = net.Learn(data.Inputs, data.Answers, 1, 1000);
             Console.WriteLine("1 Thread -> Elapsed Time is {0} ms", stopwatch.ElapsedMilliseconds);
             stopwatch.Restart();
-            var aff = net.LearnThreding(data.Inputs, data.Answers, 1, 1000).Result;
+            var aff = net.LearnWithThreding(data.Inputs, data.Answers, 1, 1000).Result;
             Console.WriteLine("many Threads -> Elapsed Time is {0} ms", stopwatch.ElapsedMilliseconds);
             stopwatch.Reset();
             #endregion
         }
+        static void Initialization() {
+            using (var sr = new StreamReader(projectDirectory + $"{Path.DirectorySeparatorChar}" + "Config.txt"))
+            {
+                while (!sr.EndOfStream)
+                {
+                    try
+                    {
+                        var str = sr.ReadToEnd();
+                        config = new Config(str);
+                    }
+                    catch
+                    {
+                        Console.WriteLine("System.FormatException: Input string was not in a correct format");
+                    }
+                }
+            }
+        } 
         static void Main(string[] args)
         {
+            Initialization();
 
-            RunAsync(100, 2000, 200);
 
+            CancellationTokenSource tokenSource = new CancellationTokenSource();
+            CancellationToken token = tokenSource.Token;
+
+            Task task = new Task(() => RunMultiThread(), token);
+            task.Start();
+
+            tokenSource.Cancel();
 
 
             Console.ReadKey();
