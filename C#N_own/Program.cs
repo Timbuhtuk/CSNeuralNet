@@ -407,11 +407,11 @@ namespace C_N_own
                     try
                     {
                         var str = sr.ReadToEnd();
-                        config = new Config(str);
+                        config.StringToConfig(str);
                     }
-                    catch
+                    catch(Exception exc)
                     {
-                        Console.WriteLine("System.FormatException: Input string was not in a correct format");
+                        Console.WriteLine(exc.Message);
                     }
                 }
             }
