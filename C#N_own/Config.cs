@@ -9,10 +9,10 @@ namespace C_N_own
     public class Config
     {
 
-        public string answers_filename = "Data.txt";
-        public string inputs_filename = "Answers.txt";
-        public string answerstest_filename = "DataTest.txt";
-        public string inputstest_filename = "AnswersTest.txt";
+        public string answers_filename = "Answers.txt";
+        public string inputs_filename = "Data.txt";
+        public string answerstest_filename = "AnswersTest.txt";
+        public string inputstest_filename = "DataTest.txt";
         
         
         public int Inputs = 13;
@@ -45,20 +45,22 @@ namespace C_N_own
 
         public void StringToConfig(string info)
         {
-            var sep_info = info.Split('\n').ToList();
+            var sep_info = info.Split(Environment.NewLine.ToCharArray()).ToList();
             var filtered_info = new List<string>();
-            foreach (string row in sep_info) { 
-                filtered_info.Add(row.Split(' ')[2]);
+            foreach (string row in sep_info) {
+                var val = row.Split(' ');
+                if (val.Length > 1) { filtered_info.Add(val[2]); }
+                
             }
             Inputs = int.Parse(filtered_info[0]);
             Outputs = int.Parse(filtered_info[1]);
             LR = double.Parse(filtered_info[2]);
-            Acelleration = int.Parse(filtered_info[3]);
-            string answers_filename = filtered_info[4];
-            string inputs_filename = filtered_info[5];
-            string answerstest_filename = filtered_info[6];
-            string inputstest_filename = filtered_info[7];
-            HiddenLayers = sep_info.GetRange(8, sep_info.Count - 8).Select(v => Convert.ToInt32(v)).ToArray(); 
+            Acelleration = double.Parse(filtered_info[3]);
+            answers_filename = filtered_info[4];
+            inputs_filename = filtered_info[5];
+            answerstest_filename = filtered_info[6];
+            inputstest_filename = filtered_info[7];
+            HiddenLayers = filtered_info.GetRange(8, filtered_info.Count - 8).Select(v => Convert.ToInt32(v)).ToArray(); 
         }
 
     }
