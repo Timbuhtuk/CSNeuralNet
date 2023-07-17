@@ -415,7 +415,7 @@ namespace C_N_own
                     }
                 }
             }
-        } 
+        } // метод читает файл конфигурации и обновляет данные обьекта config
         static void Main(string[] args)
         {
             Initialization();
