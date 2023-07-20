@@ -6,5 +6,5 @@ answers_filename = Data.txt
 inputs_filename = Data.txt
 answerstest_filename = Data.txt
 inputstest_filename = Data.txt
-HiddenLayer = 8
-HiddenLayer = 7
+HiddenLayer = 8,7,6,5
+если я ничего не путаю в конфиге после 9 строки моэно писать что угодно)

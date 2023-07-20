@@ -60,7 +60,7 @@ namespace C_N_own
             inputs_filename = filtered_info[5];
             answerstest_filename = filtered_info[6];
             inputstest_filename = filtered_info[7];
-            HiddenLayers = filtered_info.GetRange(8, filtered_info.Count - 8).Select(v => Convert.ToInt32(v)).ToArray(); 
+            HiddenLayers = filtered_info[8].Split(',').Select(v => Convert.ToInt32(v)).ToArray(); 
         }
 
     }
