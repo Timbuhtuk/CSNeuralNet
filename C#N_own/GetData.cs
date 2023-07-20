@@ -45,7 +45,7 @@ namespace C_N_own
         public string GetScaledStringWeights(Net n)
         {
             return DataFormat.WeightsToString(GetScaledWeights(n));
-        }
+        } 
         private void UpdateData(ref List<double[]> list,string file)
         {
             list = new List<double[]>();

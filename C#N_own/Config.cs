@@ -20,8 +20,8 @@ namespace C_N_own
         public int[] HiddenLayers = {16 , 8 , 4 };
         public double LR = 0.01;
         public double Acelleration = 0.5;
-        public Config(string str) {
-            StringToConfig(str);
+        public Config(string info) {
+            StringToConfig(info);
         }
         public Config(
             int Inputs,
