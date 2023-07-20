@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace C_N_own
 {
@@ -407,7 +408,8 @@ namespace C_N_own
                     try
                     {
                         var str = sr.ReadToEnd();
-                        config.StringToConfig(str);
+                        config = JsonConvert.DeserializeObject<Config>(str);    
+
                     }
                     catch(Exception exc)
                     {
@@ -415,6 +417,11 @@ namespace C_N_own
                     }
                 }
             }
+
+
+
+
+
         } // метод читает файл конфигурации и обновляет данные обьекта config
         static void Main(string[] args)
         {
