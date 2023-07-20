@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace C_N_own
 {
@@ -42,10 +43,14 @@ namespace C_N_own
         private List<List<double[]>> GetScaledWeights(Net n){
             return DataFormat.Scaling(n.GetWeights());
         }
+        //public string GetScaledStringWeights(Net n)
+        //{
+        //    return DataFormat.WeightsToString(GetScaledWeights(n));
+        //}
         public string GetScaledStringWeights(Net n)
         {
-            return DataFormat.WeightsToString(GetScaledWeights(n));
-        } 
+            return JsonConvert.SerializeObject(GetScaledWeights(n));
+        }
         private void UpdateData(ref List<double[]> list,string file)
         {
             list = new List<double[]>();

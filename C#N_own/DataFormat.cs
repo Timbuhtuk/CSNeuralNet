@@ -143,34 +143,34 @@ namespace C_N_own
             }
             return result;
         }// перегрузка ToOne() для работы с  List<double[]>
-        static public string WeightsToString(List<List<double[]>> weights)
-        {
-            string result = "";
-            for(int layer = 0; layer < weights.Count; layer++)
-            {
-                for(int neuron = 0; neuron < weights[layer].Count; neuron++)
-                {
-                    for (int q = 0; q < weights[layer][neuron].Length; q++)
-                    {
-                        result += weights[layer][neuron][q];
+        //static public string WeightsToString(List<List<double[]>> weights)
+        //{
+        //    string result = "";
+        //    for(int layer = 0; layer < weights.Count; layer++)
+        //    {
+        //        for(int neuron = 0; neuron < weights[layer].Count; neuron++)
+        //        {
+        //            for (int q = 0; q < weights[layer][neuron].Length; q++)
+        //            {
+        //                result += weights[layer][neuron][q];
 
-                        if (q < weights[layer][neuron].Length - 1)
-                        {
-                            result += "/";
-                        }
-                    }
-                    if (neuron < weights[layer].Count - 1)
-                    {
-                        result += "*";
-                    }
-                }
-                if (layer < weights.Count - 1)
-                {
-                    result += "|";
-                }
-            }
-            return result;
-        }
+        //                if (q < weights[layer][neuron].Length - 1)
+        //                {
+        //                    result += "/";
+        //                }
+        //            }
+        //            if (neuron < weights[layer].Count - 1)
+        //            {
+        //                result += "*";
+        //            }
+        //        }
+        //        if (layer < weights.Count - 1)
+        //        {
+        //            result += "|";
+        //        }
+        //    }
+        //    return result;
+        //}
 
     }
 }
