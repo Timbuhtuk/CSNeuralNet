@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,13 +12,38 @@ using Newtonsoft.Json;
 namespace C_N_own
 {
 
-
     internal class Program
     {
 
         static string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; // создание переменной для хранения директории проекта 
 
         static Config config = new Config(13, 1, 1, 0.1, "Data.txt", "Answers.txt", "DataTest.txt", "AnswersTest.txt", 16,8,4);
+
+
+        static async public Task<double[]> GetActualCoefs(string url,int count) { 
+            HttpClient httpClient = new HttpClient();
+            try
+            {
+                List<double> coefs= new List<double>();
+                var httpResponseMessage = await httpClient.GetAsync(url);
+                string jsonResponse = await httpResponseMessage.Content.ReadAsStringAsync();
+                //Console.WriteLine(jsonResponse);
+                CSGORUN CSGORUN = JsonConvert.DeserializeObject<CSGORUN>(jsonResponse);
+                for (int q = 0; q < count; q++) {
+                    coefs.Add(CSGORUN.data.game.history[q].crash);
+                }
+                return coefs.ToArray();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+            finally {
+                httpClient.Dispose();
+
+            }
+        }
         static public void RunMultiThread(int Q = 100,int Batch = 1000,int epoch = 100) {
 
             #region params
@@ -417,25 +443,34 @@ namespace C_N_own
                     }
                 }
             }
-
-
-
-
-
         } // метод читает файл конфигурации и обновляет данные обьекта config
+        static private void Test()
+        {
+            #region params
+
+
+            Stopwatch stopwatch = new Stopwatch(); // переменная таймера
+            GetData data = new GetData(config); // создание обьекта для чткния дат сетов
+
+
+            Random rng = new Random();
+
+
+            Net net = new Net(config);
+
+            Console.WriteLine(net.Load(projectDirectory + $"{Path.DirectorySeparatorChar}Weights.txt"));
+
+            var str = data.GetScaledStringWeights(net);
+            Console.ReadKey();
+
+            #endregion
+        }
         static void Main(string[] args)
         {
             Initialization();
 
-
-            CancellationTokenSource tokenSource = new CancellationTokenSource();
-            CancellationToken token = tokenSource.Token;
-
-            Task task = new Task(() => RunMultiThread(), token);
-            task.Start();
-
-            tokenSource.Cancel();
-
+            GetActualCoefs("https://api.csgorun.io/current-state?montaznayaPena=null",13);
+           Test();
 
             Console.ReadKey();
         }

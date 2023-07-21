@@ -27,13 +27,13 @@ namespace C_N_own
         }
         public Net(Config config)
         {
-            Layers = new List<Layer>(2 + config.HiddenLayers.Length);
-            CreateInputLayer(config.Inputs);
-            CreateHiddenLayers(config.HiddenLayers);
-            CreateOutputLayer(config.Outputs);
+            Layers = new List<Layer>(2 + config.hiddenlayers.Length);
+            CreateInputLayer(config.inputs);
+            CreateHiddenLayers(config.hiddenlayers);
+            CreateOutputLayer(config.outputs);
 
-            LR = config.LR;
-            Acelleration = config.Acelleration;
+            LR = config.lr;
+            Acelleration = config.acelleration;
         }
 
         private void CreateInputLayer(int inputs)

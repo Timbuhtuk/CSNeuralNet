@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="CSGORUN.cs" />
     <Compile Include="DataFormat.cs" />
     <Compile Include="GetData.cs" />
     <Compile Include="Layer.cs" />

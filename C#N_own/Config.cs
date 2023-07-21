@@ -19,15 +19,15 @@ namespace C_N_own
         public string inputstest_filename = "DataTest.txt";
 
         [JsonProperty("inputs")]
-        public int Inputs = 13;
+        public int inputs = 13;
         [JsonProperty("outputs")]
-        public int Outputs = 1;
+        public int outputs = 1;
         [JsonProperty("hiddenlayers")]
-        public int[] HiddenLayers = {16 , 8 , 4 };
+        public int[] hiddenlayers = {16 , 8 , 4 };
         [JsonProperty("lr")]
-        public double LR = 0.01;
+        public double lr = 0.01;
         [JsonProperty("acelleration")]
-        public double Acelleration = 0.5;
+        public double acelleration = 0.5;
         public Config(
             int Inputs,
             int Outputs,
@@ -40,11 +40,11 @@ namespace C_N_own
             params int[] HiddenLayers
             ) 
         {
-            this.Acelleration = Acelleration;
-            this.Inputs = Inputs;
-            this.Outputs = Outputs;
-            this.HiddenLayers = HiddenLayers;
-            this.LR = LR;
+            this.acelleration = Acelleration;
+            this.inputs = Inputs;
+            this.outputs = Outputs;
+            this.hiddenlayers = HiddenLayers;
+            this.lr = LR;
 
         }
 
