@@ -3,25 +3,56 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace C_N_own
 {
 
-
     internal class Program
     {
-        static Config config = new Config(13, 1, 1, 0.1, 16,8,4);
-        static public void RunAsync(int Q = 100,int Batch = 1000,int epoch = 100) {
+
+        static string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; // создание переменной для хранения директории проекта 
+
+        static Config config = new Config(13, 1, 1, 0.1, "Data.txt", "Answers.txt", "DataTest.txt", "AnswersTest.txt", 16,8,4);
+
+
+        static async public Task<double[]> GetActualCoefs(string url,int count) { 
+            HttpClient httpClient = new HttpClient();
+            try
+            {
+                List<double> coefs= new List<double>();
+                var httpResponseMessage = await httpClient.GetAsync(url);
+                string jsonResponse = await httpResponseMessage.Content.ReadAsStringAsync();
+                //Console.WriteLine(jsonResponse);
+                CSGORUN CSGORUN = JsonConvert.DeserializeObject<CSGORUN>(jsonResponse);
+                for (int q = 0; q < count; q++) {
+                    coefs.Add(CSGORUN.data.game.history[q].crash);
+                }
+                return coefs.ToArray();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+            finally {
+                httpClient.Dispose();
+
+            }
+        }
+        static public void RunMultiThread(int Q = 100,int Batch = 1000,int epoch = 100) {
 
             #region params
             Net net = new Net(config);
 
 
-            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; // создание переменной для хранения директории проекта     
+                
             Stopwatch stopwatch = new Stopwatch(); // переменная таймера
-            GetData data = new GetData(); // создание обьекта для чткния дат сетов
+            GetData data = new GetData(config); // создание обьекта для чткния дат сетов
 
 
             Random rng = new Random();
@@ -88,7 +119,7 @@ namespace C_N_own
                 stopwatch.Start();//таймер измеряющий время затраченое на итерацию обучения
 
 
-                a = net.LearnThreding(data.Inputs, data.Answers, epoch, Batch).Result;//вызов метода обучения с параметрами:
+                a = net.LearnWithThreding(data.Inputs, data.Answers, epoch, Batch).Result;//вызов метода обучения с параметрами:
                 //массив входов обучающей выборки Inputs из класса GetData
                 //массив выходов обучающей выборки Answers из класса GetData
                 //кол-во эпох на итерацию 10 
@@ -99,7 +130,7 @@ namespace C_N_own
 
 
                 #region Console Info
-                Console.WriteLine("Test Error[q] - " + net.TestWithScaledFFs(data.InputsTest, data.AnswersTest)[0]);
+
                 Console.WriteLine("FeedForward[0] - " + net.FeedForward(data.InputsTest[0]).Outputs[0] + " - expected: " + data.AnswersTest[0][0]);
                 Console.WriteLine("FeedForward[1] - " + net.FeedForward(data.InputsTest[1]).Outputs[0] + " - expected: " + data.AnswersTest[1][0]);
                 Console.WriteLine("FeedForward[2] - " + net.FeedForward(data.InputsTest[2]).Outputs[0] + " - expected: " + data.AnswersTest[2][0]);
@@ -148,17 +179,13 @@ namespace C_N_own
             #endregion
 
         }
-        static public void RunAsyncN(int Q = 100, int Batch = 1000, int epoch = 100)
+        static public void RunMultiThreadN(int Q = 100, int Batch = 1000, int epoch = 100)
         {
 
             #region params
 
-
-
-
-            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; // создание переменной для хранения директории проекта
             Stopwatch stopwatch = new Stopwatch(); // переменная таймера
-            GetData data = new GetData(); // создание обьекта для чткния дат сетов
+            GetData data = new GetData(config); // создание обьекта для чткния дат сетов
 
 
             Random rng = new Random();
@@ -253,11 +280,11 @@ namespace C_N_own
                 stopwatch.Start();//таймер измеряющий время затраченое на итерацию обучения
 
 
-                a = net.LearnThreding(data.Inputs, data.Answers, epoch, Batch).Result;//вызов метода обучения с параметрами:
-                                                                                      //массив входов обучающей выборки Inputs из класса GetData
-                                                                                      //массив выходов обучающей выборки Answers из класса GetData
-                                                                                      //кол-во эпох на итерацию 10 
-                                                                                      //размер батча 2000(позваляет запускать эпоху деля датасет на чати, в случае мультипоточной версии метода для каждого батча создается отдельный поток)
+                a = net.LearnWithThreding(data.Inputs, data.Answers, epoch, Batch).Result;//вызов метода обучения с параметрами:
+                                                                                          //массив входов обучающей выборки Inputs из класса GetData
+                                                                                          //массив выходов обучающей выборки Answers из класса GetData
+                                                                                          //кол-во эпох на итерацию 10 
+                                                                                          //размер батча 2000(позваляет запускать эпоху деля датасет на чати, в случае мультипоточной версии метода для каждого батча создается отдельный поток)
 
 
                 if (q % 101 == 100)
@@ -268,7 +295,6 @@ namespace C_N_own
                     stopwatch.Reset();
                     #region Console Info
 
-                    Console.WriteLine("Test Error[q] - " + net.TestWithScaledFFs(data.InputsTest, data.AnswersTest)[0]);
                     Console.WriteLine("FeedForward[0] - " + net.FeedForward(data.InputsTest[0]).Outputs[0] + " - expected: " + data.AnswersTest[0][0]);
                     Console.WriteLine("FeedForward[1] - " + net.FeedForward(data.InputsTest[1]).Outputs[0] + " - expected: " + data.AnswersTest[1][0]);
                     Console.WriteLine("FeedForward[2] - " + net.FeedForward(data.InputsTest[2]).Outputs[0] + " - expected: " + data.AnswersTest[2][0]);
@@ -323,14 +349,14 @@ namespace C_N_own
 
                 Console.ReadKey();
         }
-        static public void Run(int Q = 100, int Batch = 1000, int epoch = 100)
+        static public void SimpleRun(int Q = 100, int Batch = 1000, int epoch = 100)
         {
 
             #region params
 
-            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; // создание переменной для хранения директории проекта     
+            
             Stopwatch stopwatch = new Stopwatch(); // переменная таймера
-            GetData data = new GetData(); // создание обьекта для чтения дата сетов
+            GetData data = new GetData(config); // создание обьекта для чтения дата сетов
 
 
             Random rng = new Random();
@@ -401,7 +427,6 @@ namespace C_N_own
 
                 #region Console Info
 
-                Console.WriteLine("Test Error[q] - " + net.TestWithScaledFFs(data.InputsTest, data.AnswersTest)[0]);
                 Console.WriteLine("FeedForward[0] - " + net.FeedForward(data.InputsTest[0]).Outputs[0] + " - expected: " + data.AnswersTest[0][0]);
                 Console.WriteLine("FeedForward[1] - " + net.FeedForward(data.InputsTest[1]).Outputs[0] + " - expected: " + data.AnswersTest[1][0]);
                 Console.WriteLine("FeedForward[2] - " + net.FeedForward(data.InputsTest[2]).Outputs[0] + " - expected: " + data.AnswersTest[2][0]);
@@ -455,9 +480,9 @@ namespace C_N_own
 
             #region params
 
-            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; // создание переменной для хранения директории проекта     
+               
             Stopwatch stopwatch = new Stopwatch(); // переменная таймера
-            GetData data = new GetData(); // создание обьекта для чткния дат сетов
+            GetData data = new GetData(config); // создание обьекта для чткния дат сетов
 
 
             Random rng = new Random();
@@ -477,17 +502,58 @@ namespace C_N_own
             var af = net.Learn(data.Inputs, data.Answers, 1, 1000);
             Console.WriteLine("1 Thread -> Elapsed Time is {0} ms", stopwatch.ElapsedMilliseconds);
             stopwatch.Restart();
-            var aff = net.LearnThreding(data.Inputs, data.Answers, 1, 1000).Result;
+            var aff = net.LearnWithThreding(data.Inputs, data.Answers, 1, 1000).Result;
             Console.WriteLine("many Threads -> Elapsed Time is {0} ms", stopwatch.ElapsedMilliseconds);
             stopwatch.Reset();
             #endregion
         }
-        static void Main()
+
+        static void Initialization() {
+            using (var sr = new StreamReader(projectDirectory + $"{Path.DirectorySeparatorChar}" + "Config.txt"))
+            {
+                while (!sr.EndOfStream)
+                {
+                    try
+                    {
+                        var str = sr.ReadToEnd();
+                        config = JsonConvert.DeserializeObject<Config>(str);    
+
+                    }
+                    catch(Exception exc)
+                    {
+                        Console.WriteLine(exc.Message);
+                    }
+                }
+            }
+        } // метод читает файл конфигурации и обновляет данные обьекта config
+        static private void Test()
         {
+            #region params
 
-            Run(100, 2000, 200);
+
+            Stopwatch stopwatch = new Stopwatch(); // переменная таймера
+            GetData data = new GetData(config); // создание обьекта для чткния дат сетов
 
 
+            Random rng = new Random();
+
+
+            Net net = new Net(config);
+
+            Console.WriteLine(net.Load(projectDirectory + $"{Path.DirectorySeparatorChar}Weights.txt"));
+
+            var str = data.GetScaledStringWeights(net);
+            Console.ReadKey();
+
+            #endregion
+        }
+        static void Main(string[] args)
+        {
+            Initialization();
+
+
+            GetActualCoefs("https://api.csgorun.io/current-state?montaznayaPena=null",13);
+           Test();
 
             Console.ReadKey();
         }

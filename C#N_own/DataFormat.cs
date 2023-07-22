@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace C_N_own
 {
-    abstract class DataFormat
+    static class DataFormat
     {
 
         static public double[] ToBinary(double[] inputs) // метод приводит значения массива к 1 если те больше 2, и к 0 если меньше
@@ -25,7 +25,7 @@ namespace C_N_own
             }
             return result;
         }
-        static public double[] ToOne(double[] inputs) // метод загоняет значения массива в рамки от 0 до 1(без мат формул)
+        static public double[] ToOne(double[] inputs) // метод загоняет значения массива в рамки от 0 до 1(просто сравнивая с пороговым значением)
         {
             double[] result = new double[inputs.Length];
             for (int q = 0; q < inputs.Length; q++)
@@ -83,7 +83,7 @@ namespace C_N_own
                 }
             }
             return result;
-        }// метод загоняет значения массива в рамки от 0 до 1(с мат формулами)
+        }// метод загоняет значения массива в рамки от 0 до 1(учитывая значения всех элементов массива)
         static public List<double[]> Scaling(List<double[]> inputs)
         {
             List<double[]> result = new List<double[]>(inputs.Count);
@@ -94,7 +94,7 @@ namespace C_N_own
             }
 
             return result;
-        }// метод загоняет значения массива в рамки от 0 до 1(с мат формулами)
+        }// метод загоняет значения массива в рамки от 0 до 1(учитывая значения всех элементов массива)
         static public List<List<double[]>> Scaling(List<List<double[]>> inputs)
         {
             var result = new List<List<double[]>>();
@@ -105,8 +105,9 @@ namespace C_N_own
             return result;
 
 
-        }// метод загоняет значения массива в рамки от 0 до 1(с мат формулами)
-        static public List<double[]> GetEveryX(List<double[]> a, int every, int sdvig)
+        }// метод загоняет значения массива в рамки от 0 до 1(учитывая значения всех элементов массива)
+
+        /*static public List<double[]> GetEveryX(List<double[]> a, int every, int sdvig)
         {
             var result = new List<double[]>();
             for (int q = 0; q < a.Count - every; q += every)
@@ -114,7 +115,7 @@ namespace C_N_own
                 result.Add(a[q + sdvig]);
             }
             return result;
-        }//кандидат на удаление песполезен, перкдадывает с пустого в порожне
+        }//кандидат на удаление песполезен, перкладывает с пустого в порожне
         static public List<double> GetEveryX(List<double> a, int every, int sdvig)
         {
             var result = new List<double>();
@@ -123,7 +124,7 @@ namespace C_N_own
                 result.Add(a[q + sdvig]);
             }
             return result;
-        }//кандидат на удаление песполезен, перкдадывает с пустого в порожне
+        }//кандидат на удаление песполезен, перкдалывает с пустого в порожне*/
         static public List<double[]> ToBinary(List<double[]> inputs)// перегрузка ToBinary() для работы с  List<double[]>
         {
             List<double[]> result = new List<double[]>();
@@ -142,34 +143,34 @@ namespace C_N_own
             }
             return result;
         }// перегрузка ToOne() для работы с  List<double[]>
-        static public string WeightsToString(List<List<double[]>> weights)
-        {
-            string result = "";
-            for(int layer = 0; layer < weights.Count; layer++)
-            {
-                for(int neuron = 0; neuron < weights[layer].Count; neuron++)
-                {
-                    for (int q = 0; q < weights[layer][neuron].Length; q++)
-                    {
-                        result += weights[layer][neuron][q];
+        //static public string WeightsToString(List<List<double[]>> weights)
+        //{
+        //    string result = "";
+        //    for(int layer = 0; layer < weights.Count; layer++)
+        //    {
+        //        for(int neuron = 0; neuron < weights[layer].Count; neuron++)
+        //        {
+        //            for (int q = 0; q < weights[layer][neuron].Length; q++)
+        //            {
+        //                result += weights[layer][neuron][q];
 
-                        if (q < weights[layer][neuron].Length - 1)
-                        {
-                            result += "/";
-                        }
-                    }
-                    if (neuron < weights[layer].Count - 1)
-                    {
-                        result += "*";
-                    }
-                }
-                if (layer < weights.Count - 1)
-                {
-                    result += "|";
-                }
-            }
-            return result;
-        }
+        //                if (q < weights[layer][neuron].Length - 1)
+        //                {
+        //                    result += "/";
+        //                }
+        //            }
+        //            if (neuron < weights[layer].Count - 1)
+        //            {
+        //                result += "*";
+        //            }
+        //        }
+        //        if (layer < weights.Count - 1)
+        //        {
+        //            result += "|";
+        //        }
+        //    }
+        //    return result;
+        //}
 
     }
 }

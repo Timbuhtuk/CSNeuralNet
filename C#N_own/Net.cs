@@ -12,9 +12,9 @@ namespace C_N_own
     public class Net
     {
         #region Basics
-        public List<Layer> Layers { get; private set; }
-        public double LR { get; set; }
-        public double Acelleration { get; set; }
+        public List<Layer> Layers { get; private set; } 
+        public double LR { get; set; } // LearningRate - переменная отвечающая за соотношкние скорость/точность обучения
+        public double Acelleration { get; set; } // переменная влияния прошлой итерции на орбучение в текущей 
         public Net(int inputs, int outputs, double lr,double acelleration, params int[] hidden)
         {
             Layers = new List<Layer>(2 + hidden.Length);
@@ -27,13 +27,13 @@ namespace C_N_own
         }
         public Net(Config config)
         {
-            Layers = new List<Layer>(2 + config.HiddenLayers.Length);
-            CreateInputLayer(config.Inputs);
-            CreateHiddenLayers(config.HiddenLayers);
-            CreateOutputLayer(config.Outputs);
+            Layers = new List<Layer>(2 + config.hiddenlayers.Length);
+            CreateInputLayer(config.inputs);
+            CreateHiddenLayers(config.hiddenlayers);
+            CreateOutputLayer(config.outputs);
 
-            LR = config.LR;
-            Acelleration = config.Acelleration;
+            LR = config.lr;
+            Acelleration = config.acelleration;
         }
 
         private void CreateInputLayer(int inputs)
@@ -159,6 +159,7 @@ namespace C_N_own
         #endregion
 
         #region TestMedods
+        // для тестов необходимо использовать тестовую выборку так как примеры из обучающей сеть уже "видела" и легко их пройдет
         public double[] TestBasic(List<double[]> inputs, List<double[]> answers)
         {
             double[] error = new double[answers[0].Length];
@@ -185,7 +186,7 @@ namespace C_N_own
             { error[f] /= answers.Count; }
 
             return error;
-        }
+        } // тест выводящий среднеквадратичную ошибку
         public void TestCompare(List<double[]> inputs, List<double[]> answers)
                 {
                     for (int e = 0; e < inputs.Count; e++)
@@ -195,8 +196,8 @@ namespace C_N_own
                         Console.WriteLine(answers[e][0]);
                     }
             
-                }
-        public double[] TestWithScaledFFs(List<double[]> inputs, List<double[]> answers)
+                } // тест выводящий " полученное - ожидаемое " значения
+        /*protected double[] TestWithScaledFFs(List<double[]> inputs, List<double[]> answers)
         {
             double[] error = new double[answers[0].Length];
             List<double[]> FFs = new List<double[]>();
@@ -217,12 +218,12 @@ namespace C_N_own
             for (int f = 0; f < answers[0].Length; f++)
             { error[f] /= inputs.Count; }
             return error;
-        }
+        }*/
         
         #endregion
 
-        #region Async Trash
-        public async Task<double[]> LearnThreding(List<double[]> inputs, List<double[]> answers, int epoch, int batch)
+        #region Async 
+        public async Task<double[]> LearnWithThreding(List<double[]> inputs, List<double[]> answers, int epoch, int batch)
         {
             var counter = 0;
             double[] error = new double[answers[0].Length];
@@ -251,8 +252,8 @@ namespace C_N_own
                    {
                         Diffs.AddRange(Tasks[e].Result);
                    }
-                    
-                    BackPropagationForAsyncLearn(Diffs);
+
+                    BackPropagationForLearnWithThreading(Diffs);
                     for (int e = 0; e < Diffs.Count; e++)
                     {
                         for (int w = 0; w < answers[0].Length; w++)
@@ -289,7 +290,7 @@ namespace C_N_own
             return result;
 
         }
-        private void BackPropagationForAsyncLearn(List<double[]> Diffs)
+        private void BackPropagationForLearnWithThreading(List<double[]> Diffs)
         {
             for (int e = 0; e < Diffs.Count; e++)
             {
@@ -313,13 +314,9 @@ namespace C_N_own
         {
             Task.Run(() => Save(file));
         }
-        public async Task<string> LoadAsync(string file)
-        {
-            var result = Task.Run(() => Load(file)).Result;
-            return result;
-        }
         #endregion
 
+        /*
         private double[] BackPropagationWithScaledFFs(List<double[]> input, List<double[]> answer)
         {
             double[] error = new double[answer[0].Length];
@@ -356,7 +353,7 @@ namespace C_N_own
             for (int f = 0; f < answer[0].Length; f++)
             { error[f] /= input.Count; }
             return error;
-        }
+        }*/
 
         
     }
