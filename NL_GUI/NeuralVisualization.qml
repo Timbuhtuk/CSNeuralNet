@@ -1,19 +1,20 @@
 import QtQuick
-import QtQuick.Layouts 1.0
+import QtQuick.Layouts
+
+// TODO: move object placment and color logic to backend
 
 Item {
     id: neurolink
 
     property var layers: [[]]
 
-    anchors.fill: parent
+    signal updateModel(var list)
 
-
-    function update() {
+    onUpdateModel: (list) => {
+        layers = list
         neurolink.width += 1
         neurolink.width -= 1
     }
-
 
     function rgb(r, g, b, a) {
           return "#"
@@ -34,63 +35,46 @@ Item {
             }
 
         }
-
         return null
-
     }
 
     function getWeight(layer, neuron, index) {
 
-        var comp = weights.itemAt(layer + 1)
+        var comp = weights.itemAt(layer)
 
         if (comp) {
 
             comp = comp.itemAt(neuron)
-
             if (comp) {
 
                 comp = comp.itemAt(index)
 
                 return comp
-
             }
-
         }
-
         return null
-
-
-
-        // return weights.itemAt(layer).itemAt(neuron).itemAt(index)
     }
 
-    function connectNeurons() {
-        for (var i = 0; i < layers.length - 1; i++) {
+    function setWeightValue(layer, neuron, weight, value) {
+        var line = neuralVisualization.getWeight(layer, neuron, weight)
 
-            for (var j = 0; j < layers[i]; j++) {
-
-                var startNeuron = getNeuron(i, j)
-
-
-                var smh = startNeuron.mapToItem(root, 20, 20)
-
-                for (var k = 0; k < layers[i + 1]; k++) {
-
-                    var weight = getWeight(i, j, k)
-
-                    var endNeuron = getNeuron(i + 1, k)
-
-
-                    var smh2 = endNeuron.mapToItem(root, 20, 20)
-
-                    weight.startX = smh.x
-                    weight.startY = smh.y
-                    weight.endX = smh2.x
-                    weight.endY = smh2.y
-
-                }
-            }
+        if (line === null) {
+            return
         }
+
+        if (line.old > value) {
+            line.color = neuralVisualization.rgb(value, 0, 0, 0)
+        }
+
+        else if (line.old === value) {
+            line.color = neuralVisualization.rgb(0, value, 0, 0)
+        }
+
+        else if (line.old < value) {
+            line.color = neuralVisualization.rgb(0, 0, value, 0)
+        }
+
+        line.old = value
     }
 
     function connectNeuronsBack() {
@@ -99,33 +83,30 @@ Item {
             for (var j = 0; j < layers[i]; j++) {
 
                 var startNeuron = getNeuron(i, j)
-                var smh = startNeuron.mapToItem(root, 20, 20)
+                var startNeuronPosition = startNeuron.mapToItem(root, 20, 20)
 
                 for (var k = 0; k < layers[i - 1]; k++) {
 
-                    var weight = getWeight(i - 1, j, k)
+                    var weight = getWeight(i, j, k)
 
                     var endNeuron = getNeuron(i - 1, k)
-                    // print("connecting weight of ", i, j, k, "from", i, j, "to", i - 1, k, "misc", j, layers[i])
 
                     if (startNeuron === null || endNeuron === null || weight === null) {
-                        print("not found")
                         continue
                     }
 
-                    var smh2 = endNeuron.mapToItem(root, 20, 20)
+                    var endNeuronPosition = endNeuron.mapToItem(root, 20, 20)
 
-                    weight.startX = smh.x
-                    weight.startY = smh.y
-                    weight.endX = smh2.x
-                    weight.endY = smh2.y
+                    weight.startX = startNeuronPosition.x
+                    weight.startY = startNeuronPosition.y
+                    weight.endX = endNeuronPosition.x
+                    weight.endY = endNeuronPosition.y
 
 
                 }
             }
         }
     }
-
 
 
     Repeater {
@@ -141,18 +122,11 @@ Item {
             delegate: Repeater {
 
                 required property int index
-
-                property int anotherIndex: index
-                model: (botIndex === 0 ? 0 : layers[botIndex - 1])
+                model: (botIndex === 0 ? layers[botIndex] : layers[botIndex - 1])
 
                 delegate: Line {
                     required property int index
-
                     anchors.fill: parent
-
-                    Component.onCompleted: {
-                        // print("created;", botIndex, anotherIndex, index)
-                    }
                 }
             }
         }
@@ -172,12 +146,12 @@ Item {
 
             delegate: Layer {
                 required property int index
+                Layout.fillHeight: true
+                Layout.fillWidth: true
                 numberOfNeurons: layers[index]
             }
         }
     }
-
-
 
     onWidthChanged: {
         connectNeuronsBack()

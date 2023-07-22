@@ -385,3 +385,5 @@ NL_GUI/.generated
 NL_GUI/.qt_plugins
 NL_GUI/CMakeFiles
 NL_GUI/2Main.qml
+NL_GUI/appnl_gui_qmltyperegistrations.cpp
+NL_GUI/test

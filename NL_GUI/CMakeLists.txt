@@ -13,14 +13,15 @@ find_package(Qt6 6.4 REQUIRED COMPONENTS Quick)
 qt_standard_project_setup()
 
 qt_add_executable(appNL_GUI
-    main.cpp pipe_reader.cpp pipe_worker.cpp pipe_reader.h pipe_worker.h
+    main.cpp pipe_controller.cpp pipe_reader.cpp pipe_writer.cpp config_writer.cpp application_backend.cpp
+    pipe_controller.h pipe_reader.h pipe_writer.h config_writer.h application_backend.h
 )
 
 
 qt_add_qml_module(appNL_GUI
     URI NL_GUI
     VERSION 1.0
-    QML_FILES Main.qml Layer.qml Line.qml CenteredCircle.qml Weights.qml NeuralVisualization.qml
+    QML_FILES Main.qml Layer.qml Line.qml CenteredCircle.qml NeuralVisualization.qml ControlPanel.qml CustomDialog.qml
 )
 
 set_target_properties(appNL_GUI PROPERTIES
@@ -32,13 +33,17 @@ set_target_properties(appNL_GUI PROPERTIES
 )
 
 set(HEADERS
+    pipe_controller.h
     pipe_reader.h
-    pipe_worker.h
+    pipe_writer.h
+    config_writer.h
 )
 set(SOURCES
     main.cpp
+    pipe_controller.cpp
     pipe_reader.cpp
-    pipe_worker.cpp
+    pipe_writer.cpp
+    config_writer.cpp
 )
 
 

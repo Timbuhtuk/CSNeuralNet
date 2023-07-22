@@ -1,148 +1,70 @@
-#include "pipe_worker.h"
 #include "pipe_reader.h"
+#include <QThread>
+#include <QString>
+#include <QByteArray>
 #include <QDebug>
+#include <thread>
+#include <stdio.h>
+#include <string>
 
-#include <QVariant>
-#include <QVariantList>
+#ifdef _WIN32
+#include <windows.h>
+#include <tchar.h>
+#include <strsafe.h>
+#endif
 
-PipeReader::PipeReader(QObject* parent)
-    : QObject{parent},
-      m_thread{new QThread},
-      m_str{new QString{"None yyet"}},
-      m_worker{new PipeWorker}
+#include <iostream>
+#include <string>
+
+PipeWorker::PipeWorker(QObject* parent) : QObject{parent}
 {
-    m_worker->moveToThread(&m_thread);
-    connect(&m_thread, &QThread::finished, m_worker, &QObject::deleteLater);
-    connect(m_worker, SIGNAL(result(QString)), this, SLOT(getResult(QString)));
-    connect(this, SIGNAL(startWorker()), m_worker, SLOT(exec()));
-    m_thread.start();
 
 }
 
-void PipeReader::getResult(const QString& str)
+void PipeWorker::exec()
 {
-    qDebug() << "Get result function triggered";
 
-    auto qstrSplit{ str.split(':') };
-    auto key{ qstrSplit[0] };
-    QString value{ qstrSplit[1] };
-    auto values = value.trimmed().split(' ');
-    if (key == "INITPRINT")
+#ifdef _WIN32
+    HANDLE hPipe;
+    DWORD dwRead;
+    char buffer[1024 * 64];
+
+    hPipe = CreateNamedPipe(TEXT("\\\\.\\pipe\\mynamedpipe"),
+                            PIPE_ACCESS_DUPLEX,
+                            PIPE_TYPE_BYTE | PIPE_READMODE_BYTE | PIPE_WAIT,   // FILE_FLAG_FIRST_PIPE_INSTANCE is not needed but forces CreateNamedPipe(..) to fail if the pipe already exists...
+                            1,
+                            1024 * 64,
+                            1024 * 64,
+                            NMPWAIT_USE_DEFAULT_WAIT,
+                            NULL);
+
+    QString string;
+    while (hPipe != INVALID_HANDLE_VALUE)
     {
-        qDebug() << "NOT initializing with values: " << getInitData(value);
 
 
-        // emit initDataFetched(getInitData(value));
-    }
-
-    else if (key == "INIT")
-    {
-        emit initDataFetched(getInitData(value));
-    }
-
-    else if (key == "WEIGHT")
-    {
-        qDebug() << "Emitting changed function";
-
-        int redValue{static_cast<int>(values[3].toDouble() * 255.0)};
-
-        emit weightDataFetched(QVariant::fromValue(values[0].toInt()),
-                               QVariant::fromValue(values[1].toInt()),
-                               QVariant::fromValue(values[2].toInt()),
-                               QVariant::fromValue(redValue));
-    }
-
-    else if (key == "WEIGHTS")
-    {
-        qDebug() << "Weights triggered";
-        emitResults(value, false);
-    }
-
-    else if (key == "WEIGHTSPRINT")
-    {
-        qDebug() << "Weights triggered";
-        emitResults(value, true);
-    }
-
-    else if (key == "WEIGHTFLAT")
-    {
-        emit weightFetchedFlat(QVariant::fromValue(values[0]),
-                               QVariant::fromValue(values[1])
-                               );
-
-
-    }
-
-    else
-    {
-        qDebug() << "Nothing has been emitted";
-    }
-
-
-}
-
-
-// TODO
-QString PipeReader::convertToRGBA(int r, int g, int b, int a)
-{
-    return {};
-}
-
-void PipeReader::emitResults(const QString& str, bool print) {
-
-    QList<QString> layers{str.split('|')};
-    QList<QString> neurons;
-    QList<QString> weights;
-    int redValue{};
-
-    for (int layerIndex{0}; layerIndex < layers.size(); ++layerIndex)
-    {
-        neurons = layers[layerIndex].split('*');
-
-        for (int neuronIndex{}; neuronIndex < neurons.size(); ++neuronIndex)
+        if (ConnectNamedPipe(hPipe, NULL) != FALSE)   // wait for someone to connect to the pipe
         {
-            weights = neurons[neuronIndex].split('/');
-
-            for (int weightIndex{}; weightIndex < weights.size(); ++weightIndex)
+            while (ReadFile(hPipe, buffer, sizeof(buffer) - 1, &dwRead, NULL) != FALSE)
             {
-                if (print)
-                {
-                    qDebug() << "Value: " << weights[weightIndex] <<
-                        "; layer: " << layerIndex <<
-                        "; neuron: " << neuronIndex <<
-                        "; weight: " << weightIndex;
-                    continue;
-                }
+                /* add terminating zero */
+                buffer[dwRead] = '\0';
+                /* do something with data in buffer */
 
 
-                redValue = static_cast<int>(weights[weightIndex].toDouble() * 255.0);
-                emit weightDataFetched(layerIndex, neuronIndex, weightIndex, redValue);
+                qDebug("result recieved");
+                auto str{QString::fromUtf8(buffer)};
+                qDebug("string created");
+                emit result(str);
+                qDebug("succesfully emitted");
 
             }
         }
-    }
-}
 
-QList<QVariant> PipeReader::getInitData(const QString& str) {
-
-    QList<QString> layers{str.split('|')};
-    QList<QString> neurons;
-
-    QList<QVariant> nlData;
-
-    for (int layerIndex{}; layerIndex < layers.size(); ++layerIndex)
-    {
-        neurons = layers[layerIndex].split('*');
-        nlData.append(QVariant::fromValue(neurons.size()));
+        DisconnectNamedPipe(hPipe);
+        qDebug() << "pipe disconnected";
     }
 
-    return nlData;
+#endif
+
 }
-
-void PipeReader::start()
-{
-
-    qInfo() << "Start function executed";
-    emit startWorker();
-}
-

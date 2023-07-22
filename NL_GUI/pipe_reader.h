@@ -1,58 +1,22 @@
-#ifndef PIPE_READER_H
-#define PIPE_READER_H
-
-#include "pipe_worker.h"
+#ifndef PIPEWORKER_H
+#define PIPEWORKER_H
 
 #include <QObject>
-#include <QList>
 #include <QString>
-#include <QThread>
-#include <QDebug>
-#include <QtQml/qqmlregistration.h>
-#include <QVariant>
-#include <QVariantList>
 
-class PipeReader : public QObject
+
+class PipeWorker : public QObject
 {
-private:
     Q_OBJECT
-    QML_ELEMENT
-    Q_PROPERTY(QString str READ str WRITE setStr NOTIFY strChanged)
-
-    QString* m_str;
-    PipeWorker* m_worker;
-    QThread m_thread;
-
 public:
-    PipeReader(QObject* parent = nullptr);
-    Q_INVOKABLE void start();
-    QString str() { return *m_str; }
-
-
-    void emitResults(const QString& str, bool print = true);
-    QList<QVariant> getInitData(const QString& str);
-    QString convertToRGBA(int r, int g, int b, int a);
-
-
+    explicit PipeWorker(QObject* parent = nullptr);
+public slots:
+    void exec();
 
 signals:
-    void startWorker();
-    void dataFetched(const QString&);
-    void strChanged(const QString&);
-    void initDataFetched(QList<QVariant> data);
-    void weightDataFetched(QVariant layer, QVariant  neuron, QVariant weight, QVariant value);
-    void weightFetchedFlat(QVariant number, QVariant value);
+    void result(const QString&);
 
-public slots:
-    void getResult(const QString& str);
-
-    void setStr(const QString& st)
-    {
-        *m_str = st; emit strChanged(st);
-        qInfo() << "Str has changed";
-    }
 
 };
 
-
-#endif
+#endif // PIPEWORKER_H

@@ -4,74 +4,46 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import NL_GUI
 
-
-
-
-Window {
-
+ApplicationWindow {
     id: root
 
-    width: 600
+    width: 1000
     height: 400
     visible: true
     title: "NL GUI"
 
     property var layersData: [1, 3, 2, 1]
 
-    signal updateModel(var list)
+    RowLayout {
+        id: mainLayout
 
-    onUpdateModel: (list) => {
-        layersData = list
+        anchors.fill: parent
 
-        root.width += 1
-        root.width -= 1
+        NeuralVisualization {
+            id: neuralVisualization
+            layers: layersData
+
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+        }
+
+        ControlPanel {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+        }
     }
+
 
     PipeReader {
         id: pipe
 
         onInitDataFetched: function(data) {
-            root.updateModel(data)
+            neuralVisualization.updateModel(data)
         }
 
-        // TODO: move logic to NeuralVisualization class
-        onWeightDataFetched: function(layer, neuron, weight, value) {
-            print("entering weight function", layer, neuron, weight, "with value", value)
-            var line = neuralVisualization.getWeight(layer, neuron, weight)
-
-            if (line === null) {
-                print("weight ", layer, neuron, weight, "with value", value, "doesn't exist")
-                return
-            }
-
-            if (line.old > value) {
-                line.color = neuralVisualization.rgb(value, 0, 0, 0)
-                print("setting colors on ", layer, neuron, weight, "with value", ": R: ", value, "G: ", 0, "B: ", 0)
-
-            }
-
-            else {
-                line.color = neuralVisualization.rgb(0, value, 0, 0)
-                print("setting colors on ", layer, neuron, weight, "with value", ": R: ", 0, "G: ", value, "B: ", 0)
-
-            }
-
-
-
-            line.old = value
+        onWeightDataFetched: (layer, neuron, weight, value) => {
+            neuralVisualization.setWeightValue(layer, neuron, weight, value)
         }
-    }
-
-    Button {
-        text: "Push Me "
-        onPressed: {
-            pipe.start()
-        }
-    }
-
-    NeuralVisualization {
-        id: neuralVisualization
-        layers: layersData
     }
 }
 

@@ -350,6 +350,10 @@ namespace C_N_own
             Console.WriteLine("first data portion >> done");
             NamedPipe.Write($"WEIGHTS:{data.GetScaledStringWeights(net)}");
             Console.WriteLine("second data portion >> done");
+            Console.ReadKey();
+            NamedPipe.Write($"WEIGHTS:{data.GetScaledStringWeights(net)}");
+            Console.WriteLine("third data portion >> done");
+
 
             return;
 
@@ -478,7 +482,7 @@ namespace C_N_own
             stopwatch.Reset();
             #endregion
         }
-        static void Main(string[] args)
+        static void Main()
         {
 
             Run(100, 2000, 200);

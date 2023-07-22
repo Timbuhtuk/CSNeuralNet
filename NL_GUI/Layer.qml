@@ -2,14 +2,11 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
-
-
-
 ColumnLayout {
+    id: layer
 
     required property int numberOfNeurons
     property alias items: repeater
-    id: layout
 
     Repeater {
 
@@ -23,6 +20,3 @@ ColumnLayout {
         }
     }
 }
-
-
-
