@@ -1,4 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿//Copyright(c) 2023, Rudenko Artur, Pankovskyi Timofii
+//All rights reserved.
+
+//This source code is licensed under the BSD-style license found in the
+//LICENSE file in the root directory of this source tree. 
+
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
