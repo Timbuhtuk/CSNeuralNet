@@ -45,6 +45,10 @@ namespace C_N_own
             this.outputs = Outputs;
             this.hiddenlayers = HiddenLayers;
             this.lr = LR;
+            this.answers_filename = answers_filename;
+            this.inputs_filename = inputs_filename;
+            this.answerstest_filename = answerstest_filename;
+            this.inputstest_filename = inputstest_filename;
 
         }
 

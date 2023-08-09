@@ -1,0 +1,15 @@
+{
+    "acelleration": 0.5,
+    "answers_filename": "Answers.txt",
+    "answerstest_filename": "AnswersTest.txt",
+    "hiddenlayers": [
+        16,
+        8,
+        4
+    ],
+    "inputs": 13,
+    "inputs_filename": "Data.txt",
+    "inputstest_filename": "DataTest.txt",
+    "lr": 0.01,
+    "outputs": 1
+}

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -60,6 +61,18 @@ namespace C_N_own
                         }
                     }
         }
+        public void Json_Save(string file)
+        {
+            using (StreamWriter writer = new StreamWriter(file))
+            {
+                List<List<double[]>> weights = new List<List<double[]>>();
+                foreach(Layer l in Layers)
+                {
+                    weights.Add(l.GetWeights());
+                }
+                writer.Write(JsonConvert.SerializeObject(weights));
+            }
+        }
         public string Load(string file)
         {
                     try
@@ -83,6 +96,30 @@ namespace C_N_own
                     catch(Exception e) { Console.WriteLine(e); /*System.Environment.Exit(0);*/ }
                     return "";
                 }
+        public string Json_Load(string file)
+        {
+            try
+            {
+                using (StreamReader reader = new StreamReader(file))
+                {
+                    List<List<double[]>> weights = new List<List<double[]>>();
+                    var row = reader.ReadToEnd();
+                    if (row != null)
+                    {
+                        weights = JsonConvert.DeserializeObject<List<List<double[]>>>(row);
+                    }
+                    else { throw new Exception("Bad Save"); }
+                    
+                    for (int q = 0; q < Layers.Count; q++)
+                    {
+                        Layers[q].Json_Load(weights[q]);
+                    }
+                    return "Loaded";
+                }
+            }
+            catch (Exception e) { Console.WriteLine(e); /*System.Environment.Exit(0);*/ }
+            return "";
+        }
         public List<List<double[]>> GetWeights() {
 
             List<List<double[]>> result = new List<List<double[]>>();
@@ -158,7 +195,7 @@ namespace C_N_own
         }
         #endregion
 
-        #region TestMedods
+        #region TestMetods
         // для тестов необходимо использовать тестовую выборку так как примеры из обучающей сеть уже "видела" и легко их пройдет
         public double[] TestBasic(List<double[]> inputs, List<double[]> answers)
         {

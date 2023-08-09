@@ -17,7 +17,7 @@ namespace C_N_own
 
         static string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; // создание переменной для хранения директории проекта 
 
-        static Config config = new Config(13, 1, 1, 0.1, "Data.txt", "Answers.txt", "DataTest.txt", "AnswersTest.txt", 16,8,4);
+        static Config config = new Config(13, 1, 1, 0.1, "Answers.txt", "Data.txt", "AnswersTest.txt", "DataTest.txt" ,1);
 
 
         static async public Task<double[]> GetActualCoefs(string url,int count) { 
@@ -44,13 +44,13 @@ namespace C_N_own
 
             }
         }
-        static public void RunMultiThread(int Q = 100,int Batch = 1000,int epoch = 100) {
+        static public void RunMultiThread(int Q = 1000,int Batch = 1,int epoch = 1000) {
 
             #region params
 
                 
             Stopwatch stopwatch = new Stopwatch(); // переменная таймера
-            GetData data = new GetData(config); // создание обьекта для чткния дат сетов
+            GetData data = new GetData(config); // создание обьекта для чтения дата сетов
 
 
             Random rng = new Random();
@@ -58,7 +58,7 @@ namespace C_N_own
 
             Net net = new Net(config);
 
-            Console.WriteLine(net.Load(projectDirectory + $"{Path.DirectorySeparatorChar}Weights.txt"));
+            Console.WriteLine(net.Json_Load(projectDirectory + $"{Path.DirectorySeparatorChar}Weights.Json"));
 
             #endregion
 
@@ -67,7 +67,7 @@ namespace C_N_own
 
             #region Loop
             var q = 0;//счетчик итераций
-            while (q<Q)//обучение идет до момента достижения порогового значения ошибки(в данном случае критерием качества взята среднеквадратичная ошибка)
+            while (q<Q)//обучение идет до момента достижения порогового значения ошибки(но в данном случае по достижении Q итераций обучение закончится)
             {
                 # region Shuflle 
 
@@ -149,7 +149,7 @@ namespace C_N_own
                 prev = a;
                 //сравнение текущей итерации с предидущей
 
-                net.Save(projectDirectory + "\\Weights.txt");
+                net.Json_Save(projectDirectory + "\\Weights.Json");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Saved");
                 #endregion
@@ -158,7 +158,7 @@ namespace C_N_own
             #endregion
 
         }
-        static public void RunMultiThreadN(int Q = 100, int Batch = 1000, int epoch = 100)
+        static public void RunMultiThreadN(int Q = 10000, int Batch = 1, int epoch = 100)
         {
 
             #region params
@@ -182,7 +182,7 @@ namespace C_N_own
 
             #region Loop
             var q = 0;//счетчик итераций
-            while (q < Q)//обучение идет до момента достижения порогового значения ошибки(в данном случае критерием качества взята среднеквадратичная ошибка)
+            while (q < Q)//обучение идет до момента достижения порогового значения ошибки(но в данном случае по достижении Q итераций обучение закончится)
             {
                 # region Shuflle 
 
@@ -281,7 +281,7 @@ namespace C_N_own
 
                 Console.ReadKey();
         }
-        static public void SimpleRun(int Q = 100, int Batch = 1000, int epoch = 100)
+        static public void SimpleRun(int Q = 10000, int Batch = 1, int epoch = 100)
         {
 
             #region params
@@ -306,7 +306,7 @@ namespace C_N_own
 
             #region Loop
             var q = 0;//счетчик итераций
-            while (q<Q)//обучение идет до момента достижения порогового значения ошибки(в данном случае критерием качества взята среднеквадратичная ошибка)
+            while (q<Q)//обучение идет до момента достижения порогового значения ошибки(но в данном случае по достижении Q итераций обучение закончится)
             {
                 # region Shuflle 
 
@@ -427,7 +427,7 @@ namespace C_N_own
             #endregion
         }
         static void Initialization() {
-            using (var sr = new StreamReader(projectDirectory + $"{Path.DirectorySeparatorChar}" + "Config.txt"))
+            using (var sr = new StreamReader(projectDirectory + $"{Path.DirectorySeparatorChar}" + "config.json"))
             {
                 while (!sr.EndOfStream)
                 {
@@ -467,10 +467,11 @@ namespace C_N_own
         }
         static void Main(string[] args)
         {
-            Initialization();
+           Initialization();
 
-            GetActualCoefs("https://api.csgorun.io/current-state?montaznayaPena=null",13);
-           Test();
+           GetActualCoefs("https://api.csgorun.io/current-state?montaznayaPena=null",13);
+
+           RunMultiThread();
 
             Console.ReadKey();
         }

@@ -20,10 +20,10 @@ namespace C_N_own
         private List<double[]> inputs; // переменная для хранения входов из обучающей выборки датасета
         private List<double[]> answersTest; // переменная для хранения ответов к тестовой выборке датасета 
         private List<double[]> inputsTest; // переменная для хранения входов из тестовой выборке датасета 
-        public string answers_filename = "Data.txt";
-        public string inputs_filename = "Answers.txt";
-        public string answerstest_filename = "DataTest.txt";
-        public string inputstest_filename = "AnswersTest.txt";
+        public string answers_filename = "Answers.txt";
+        public string inputs_filename = "Data.txt";
+        public string answerstest_filename = "AnswersTest.txt";
+        public string inputstest_filename = "DataTest.txt";
 
 
         static string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; // рабочая директория
@@ -33,6 +33,11 @@ namespace C_N_own
 
         public GetData(Config config) // конструктор заполняющий все внутрение переменные
         {
+            this.answers_filename = config.answers_filename;
+            this.inputs_filename = config.inputs_filename;
+            this.answerstest_filename = config.answerstest_filename;
+            this.inputstest_filename = config.inputstest_filename;
+
             UpdateData(ref inputs, inputs_filename);
             UpdateData(ref answers, answers_filename);
             UpdateData(ref inputsTest, inputstest_filename);

@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup as BS
 import json
 
 r = requests.get("https://api.csgorun.io/current-state?montaznayaPena=null")
+
 JsonText = json.loads(r.text)
 
 rowcount = 13 

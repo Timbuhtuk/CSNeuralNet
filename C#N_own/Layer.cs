@@ -174,6 +174,11 @@ namespace C_N_own
             Weights = weights;
             return weights;
         }
+        public override List<double[]> Json_Load(List<double[]> weights)
+        {
+            Weights = weights;
+            return weights;
+        }
         #endregion
     }
     public class Layer
@@ -269,6 +274,10 @@ namespace C_N_own
                 weights.Add(one); 
             }
 
+            return weights;
+        }
+        public virtual List<double[]> Json_Load(List<double[]> weights)
+        {
             return weights;
         }
         public List<double[]> GetWeights() { return Weights; }
