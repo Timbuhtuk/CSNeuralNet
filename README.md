@@ -8,7 +8,7 @@ CSNeuralNet is a neural network that takes betting values, learns on them and th
 ## Build
 #### Dependencies
 You need those dependencies to be installed before compiling:
-- Netownsoft version [to be filled by timbuhtuk]
+- Netownsoft version 13.0.3
 - dotnet core OR mono
 #### Compiling
 Using terminal: 
@@ -17,7 +17,8 @@ run msbuild in the project directory
 
 Using Visual Studio:
 
-[to be filled by timbuhtuk]
+Microsoft Visual Studio Community 2022 version 17.6.3
+
 
 
 
@@ -36,9 +37,8 @@ Open terminal and run `mono C#N_own.exe`
 [to be filled by timbuhtuk]
 
 ## Special thanks
-Special thanks to [Smak](https://t.me/smak_media) for being based AF. [gigachad gif, to be filled by timbuhtuk]
+Special thanks to [Smak](https://t.me/smak_media) for being based.
 
-Special thanks to Zelenskiy for allowing to poop (срати).
 
 Thanks for CSGORUN for providing the data.
 
@@ -46,4 +46,5 @@ Thanks for CSGORUN for providing the data.
 
 ## Authors
 
-Made by Donetzk child with 🛩️ and 💣.
+Frontend: KotoWhiskas
+Backend: Timbuhtuk
